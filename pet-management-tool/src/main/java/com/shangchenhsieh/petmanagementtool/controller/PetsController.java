@@ -3,11 +3,14 @@ package com.shangchenhsieh.petmanagementtool.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.shangchenhsieh.petmanagementtool.domain.Pets;
+import com.shangchenhsieh.petmanagementtool.service.MapValidationErrorService;
 import com.shangchenhsieh.petmanagementtool.service.PetsService;
 
 
@@ -16,12 +19,21 @@ import com.shangchenhsieh.petmanagementtool.service.PetsService;
 public class PetsController {
 
     @Autowired
-    PetsService petsService;
+    private PetsService petsService;
+
+    @Autowired
+    private MapValidationErrorService mapValidationErrorService;
 
     // create pet
     @PostMapping("")
-    public Pets createPets(@Valid @RequestBody Pets pet){
-        return petsService.savePets(pet);
+    public ResponseEntity<?> createPets(@Valid @RequestBody Pets pet, BindingResult result) {
+
+        ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
+        if(errorMap !=  null) {
+            return errorMap;
+        }
+        Pets savedPet = petsService.savePets(pet);
+        return new ResponseEntity<Pets>(savedPet, HttpStatus.CREATED);
     }
 
     // @GetMapping("")

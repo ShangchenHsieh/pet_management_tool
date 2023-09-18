@@ -1,6 +1,7 @@
 package com.shangchenhsieh.petmanagementtool.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Pets")
@@ -10,7 +11,8 @@ public class Pets {
     private Long id;
 
     
-    @Column(nullable = true, updatable = true)
+    @Column(nullable = false, updatable = true, unique = true)
+    @NotBlank(message = "Give your pet a name")
     private String petsName;
 
 
@@ -27,6 +29,7 @@ public class Pets {
 
     @Column(nullable = true, length = 64)
     private String petPicture;
+
 
     private int feedPerDay = 2; 
 
@@ -71,5 +74,13 @@ public class Pets {
 
     public void setAge(double age) {
         this.age = age;
+    }
+
+    public String getPetPicture() {
+        return this.petPicture;
+    }
+
+    public void setPetPicture(String petPicture) {
+        this.petPicture = petPicture;
     }
 }

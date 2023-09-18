@@ -13,7 +13,10 @@ public class PetsService {
     PetsRepository petsRepository;
     
     public Pets savePets(Pets p){
-        Pets savedPets = petsRepository.save(p);
-        return savedPets;
+        try {
+            return petsRepository.save(p);
+        } catch(Exception e) {
+
+        }
     }
 }
