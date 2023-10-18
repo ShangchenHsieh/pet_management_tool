@@ -1,4 +1,4 @@
-package com.shangchenhsieh.petmanagementtool.domain;
+package com.shangchenhsieh.petmanagementtool.exception;
 
 public class PetNameExceptionResponse {
     private String petsName;

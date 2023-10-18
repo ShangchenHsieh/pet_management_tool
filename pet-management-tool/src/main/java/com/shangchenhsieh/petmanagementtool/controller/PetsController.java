@@ -1,5 +1,7 @@
 package com.shangchenhsieh.petmanagementtool.controller;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,12 @@ public class PetsController {
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
 
-    // create pet
+    /**
+     * This method creates a new pet object and save it in the database
+     * @param pet
+     * @param result
+     * @return the created pet object
+     */
     @PostMapping("")
     public ResponseEntity<?> createPets(@Valid @RequestBody Pets pet, BindingResult result) {
 
@@ -36,15 +43,13 @@ public class PetsController {
         return new ResponseEntity<Pets>(savedPet, HttpStatus.CREATED);
     }
 
-    // @GetMapping("")
-    // public void test() {
-    //     System.out.print("Successfully ping");
-    // }
+    @GetMapping("/{petsName}")
+    public ResponseEntity<?> getPetsByPetsname(@PathVariable String petsName) { 
+        Pets pet = petsService.findPetsByPetsname(petsName.toUpperCase());
 
-    @GetMapping("")
-    public ResponseEntity<?> getAllPets() { 
-        return null;
+        return new ResponseEntity<Pets>(pet, HttpStatus.OK);
     }
+
     // read pet 
     // update pet
     // delete pet

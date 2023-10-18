@@ -11,7 +11,7 @@ public class Pets {
     private Long id;
 
     
-    @Column(nullable = false, updatable = true, unique = true)
+    @Column(nullable = false, unique = true)
     @NotBlank(message = "Give your pet a name")
     private String petsName;
 
