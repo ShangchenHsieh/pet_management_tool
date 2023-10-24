@@ -2,9 +2,9 @@ package com.shangchenhsieh.petmanagementtool.domain;
 
 
 import java.util.Date;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+
 
 
 
