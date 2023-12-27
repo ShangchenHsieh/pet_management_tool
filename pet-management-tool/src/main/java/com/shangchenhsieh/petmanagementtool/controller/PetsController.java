@@ -15,7 +15,6 @@ import com.shangchenhsieh.petmanagementtool.domain.Pets;
 import com.shangchenhsieh.petmanagementtool.service.MapValidationErrorService;
 import com.shangchenhsieh.petmanagementtool.service.PetsService;
 
-
 @Controller
 @RequestMapping("/api/pets")
 public class PetsController {
@@ -27,30 +26,50 @@ public class PetsController {
     private MapValidationErrorService mapValidationErrorService;
 
     /**
-     * This method creates a new pet object and save it in the database
+     * creates a new pet object and save it in the database
+     * 
      * @param pet
      * @param result
-     * @return the created pet object
+     * @return the created pet object and HTTP status 200
      */
     @PostMapping("")
     public ResponseEntity<?> createPets(@Valid @RequestBody Pets pet, BindingResult result) {
-
+        // map errors into an errorMap if there are errors
         ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationService(result);
-        if(errorMap !=  null) {
+
+        // return errorMap if there are errors
+        if (errorMap != null) {
             return errorMap;
         }
+        // save the new pet into database
         Pets savedPet = petsService.savePets(pet);
+
         return new ResponseEntity<Pets>(savedPet, HttpStatus.CREATED);
     }
 
+    /**
+     * find and return a pet with it's name
+     * 
+     * @param petsName
+     * @return a JSON pet object with the HTTP status 200
+     */
+    // !!! NotUniqueElementException might be thrown since Pets and Users are not
+    // connected yet !!!
     @GetMapping("/{petsName}")
-    public ResponseEntity<?> getPetsByPetsname(@PathVariable String petsName) { 
+    public ResponseEntity<?> getPetsByPetsname(@PathVariable String petsName) {
         Pets pet = petsService.findPetsByPetsname(petsName.toUpperCase());
 
         return new ResponseEntity<Pets>(pet, HttpStatus.OK);
     }
 
-    // read pet 
+    /**
+     * get all pets from a user
+     */
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllPets() {
+        return null;
+    }
+
     // update pet
     // delete pet
 
