@@ -1,8 +1,0 @@
-{
-    "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "editor.fontSize": 15, 
-    "window.zoomLevel": 0.8, 
-    "terminal.integrated.fontSize": 15, 
-    "terminal.integrated.fontWeight": 400
-}
