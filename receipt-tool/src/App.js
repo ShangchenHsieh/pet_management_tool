@@ -7,7 +7,7 @@ import Modal from './components/Modal';
 function App() {
   return (
     <main> 
-      {/* <Search /> */}
+      <Search />
       {/* <Favorites /> */}
       <Meals />
       {/* <Modal /> */}
