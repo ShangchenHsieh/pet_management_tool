@@ -306,3 +306,61 @@ ul {
 .search-container .btn {
   font-size:0.75rem;
 }
+
+
+/* Modal */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: grid;
+  place-items: center;
+  transition: var(--transition);
+  z-index: 100;
+}
+
+.modal-container {
+  width:80vw;
+  background:var(--white);
+  max-width: 800px;
+  height:80vh;
+  overflow:scroll;
+  background: var(--white);
+  border-radius: var(--borderRadius);
+}
+
+.modal-img {
+  height: 15rem;
+  border-top-left-radius:var(--borderRadius);
+  border-top-right-radius:var(--borderRadius);
+}
+
+.modal-content {
+  padding:1rem 1.5rem;
+}
+
+.modal-content p {
+  color: var(--grey-600);
+}
+
+.modal-content a {
+  display:block;
+  color:var(--primary-500);
+  margin-bottom: 1rem;
+  text-decoration:underline;
+  transition:var(--transition);
+}
+
+.close-btn {
+  background:var(--red-dark);
+  color:var(--white)
+}
+
+.modal-content a:hover {
+  color: var(--black)
+}
+
