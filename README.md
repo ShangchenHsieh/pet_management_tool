@@ -1,10 +1,5 @@
 # Pet Management Tool - Team Taco
 
-## Meet Our Developers
-
-
-# Pet Management Tool Application
-
 ## Team Members
 - [Daniel H](https://github.com/dh0169)
 
