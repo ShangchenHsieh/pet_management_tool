@@ -7,4 +7,8 @@
 
 - [Yar M](https://github.com/khmorad)
 
+## Meet Our Graphic Designer
+
+- [Ann H]()
+
 [![Button](./public_assets/bmc.jpg)](https://www.paypal.com/paypalme/buyseanacoffee)
