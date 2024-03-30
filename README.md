@@ -7,6 +7,11 @@
 
 - [Yar M](https://github.com/khmorad)
 
+## Meet Our Graphic Designer
+
+- [Ann H]()
+
+
 ## Description
 The Pet Management Tool Application is designed to help pet owners monitor various aspects of their pets' well-being. It provides features to track information such as weight, height, feeding status, and more. 
 
@@ -19,7 +24,7 @@ Additionally, the application integrates OpenAI technology on the front page, al
 - Support for a wide range of pets, including fish, spiders, birds, etc.
 
 ## Technology Stack
-- **Frontend**: React
+- **Frontend**: ReactJS
 - **Backend**: Flask
 - **API**: FasAPI
 
@@ -38,8 +43,8 @@ Additionally, the application integrates OpenAI technology on the front page, al
 
 ## Feedback
 We welcome any feedback or suggestions for improving the Pet Management Tool Application. Please feel free to reach out to us with your thoughts or ideas for enhancement.
+[![Button](./public_assets/bmc.jpg)](https://www.paypal.com/paypalme/buyseanacoffee)
 
----
 
 *Note: This readme file provides an overview of the Pet Management Tool Application. For detailed instructions on using the application, please refer to the user manual or help section within the app.*
 
