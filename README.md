@@ -49,7 +49,4 @@ We welcome any feedback or suggestions for improving the Pet Management Tool App
 *Note: This readme file provides an overview of the Pet Management Tool Application. For detailed instructions on using the application, please refer to the user manual or help section within the app.*
 
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Rotating_earth_%28large%29.gif/300px-Rotating_earth_%28large%29.gif" alt="Rotating Earth" width="100" align="right"> <!-- GIF -->
 
-[<img src="./public_assets/bmc.jpg" alt="Button" width="300" style="text-align: center;">](https://www.paypal.com/paypalme/buyseanacoffee) <!-- Button -->
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Rotating_earth_%28large%29.gif/300px-Rotating_earth_%28large%29.gif" alt="Rotating Earth" width="100" align="left"> <!-- GIF -->
