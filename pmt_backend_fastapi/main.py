@@ -1,6 +1,8 @@
 from fastapi import FastAPI 
+from router import test
 
 app = FastAPI()
+app.include_router(test.router)
 
 @app.get("/")
 async def root(): 
