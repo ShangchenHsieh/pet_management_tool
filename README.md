@@ -1,3 +1,5 @@
+![](./public_assets/cats.jpg)
+
 # Pet Management Tool - Team Taco
 
 ## Team Members
@@ -46,6 +48,11 @@ Additionally, the application integrates OpenAI technology on the front page, al
 - Enhance the OpenAI integration to provide more personalized and in-depth pet care advice.
 - Introduce social features, allowing users to connect with other pet owners, share tips, and exchange experiences.
 
+## Diagrams
+
+- [Entity Relationship Diagram](./design_diagrams/pet_management_system_entity_relationship_diagram.drawio.pdf)
+- [Schema Diagram](./design_diagrams/pet_management_system_schema_diagram.drawio.pdf)
+
 ## Feedback
 
 We welcome any feedback or suggestions for improving the Pet Management Tool Application. Please feel free to reach out to us with your thoughts or ideas for enhancement.
@@ -53,7 +60,8 @@ We welcome any feedback or suggestions for improving the Pet Management Tool App
 
 _Note: This readme file provides an overview of the Pet Management Tool Application. For detailed instructions on using the application, please refer to the user manual or help section within the app._
 
-[![Button](./public_assets/bmc.jpg)](https://www.paypal.com/paypalme/buyseanacoffee)
+[![Donate](./public_assets/buy_me_a_coffee.jpg)](https://www.paypal.com/paypalme/buyseanacoffee)
+
 
 
 _Note: This readme file provides an overview of the Pet Management Tool Application. For detailed instructions on using the application, please refer to the user manual or help section within the app._

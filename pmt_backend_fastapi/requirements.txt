@@ -1,5 +1,3 @@
-fastapi 
 uvicorn[standard]
-
-# source env/bin/activate
-# activate venv
+sqlalchemy
+python-dotenv
