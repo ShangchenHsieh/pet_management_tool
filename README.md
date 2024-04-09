@@ -57,6 +57,11 @@ Additionally, the application integrates OpenAI technology on the front page, al
 
 We welcome any feedback or suggestions for improving the Pet Management Tool Application. Please feel free to reach out to us with your thoughts or ideas for enhancement.
 
+
 _Note: This readme file provides an overview of the Pet Management Tool Application. For detailed instructions on using the application, please refer to the user manual or help section within the app._
 
 [![Donate](./public_assets/buy_me_a_coffee.jpg)](https://www.paypal.com/paypalme/buyseanacoffee)
+
+
+
+_Note: This readme file provides an overview of the Pet Management Tool Application. For detailed instructions on using the application, please refer to the user manual or help section within the app._
