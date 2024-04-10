@@ -7,6 +7,7 @@ import os
 
 
 load_dotenv()
+
 DATABASE_USER = os.getenv("DATABASE_USER")
 DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
 DATABASE_HOST = os.getenv("DATABASE_HOST")
@@ -19,7 +20,6 @@ SQLALCHEMY_DATABASE_URL = f"postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DA
 # postgresql://{username}:{password}@{host_address}:{port}/{name_of_the_database}
 # postgresql://postgres:pw123@localhost:5432/pmt_db
 
-# SQLALCHEMY_DATABASE_URL = f'postgresql://sean:0702@localhost:5432/pmt'
 
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
