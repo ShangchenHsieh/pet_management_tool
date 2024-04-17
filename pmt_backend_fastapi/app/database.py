@@ -18,7 +18,7 @@ SQLALCHEMY_DATABASE_URL = f"postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DA
 
 # address to your DB
 # postgresql://{username}:{password}@{host_address}:{port}/{name_of_the_database}
-# postgresql://postgres:pw123@localhost:5432/pmt_db
+# postgresql://postgres:pw123@localhost:5432/pmt
 
 
 
