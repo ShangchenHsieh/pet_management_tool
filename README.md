@@ -1,18 +1,6 @@
 ![](./public_assets/cats.jpg)
 
-# Pet Management Tool - Team Taco
-
-## Team Members
-
-- [Daniel H](https://github.com/dh0169)
-
-- [Sean H](https://github.com/ShangchenHsieh)
-
-- [Yar M](https://github.com/khmorad)
-
-## Meet Our Graphic Designer
-
-- [Ann H]()
+# Pawfect+
 
 ## Description
 
@@ -53,15 +41,22 @@ Additionally, the application integrates OpenAI technology on the front page, al
 - [Entity Relationship Diagram](./design_diagrams/pet_management_system_entity_relationship_diagram.drawio.pdf)
 - [Schema Diagram](./design_diagrams/pet_management_system_schema_diagram.drawio.pdf)
 
+## Meet Our Developers
+
+- [Daniel H](https://github.com/dh0169)
+
+- [Sean H](https://github.com/ShangchenHsieh)
+
+- [Yar M](https://github.com/khmorad)
+
+## Meet Our Graphic Designer
+
+- [Ann H](https://www.instagram.com/collis.ou_l?igsh=MzRlODBiNWFlZA==)
+
 ## Feedback
 
 We welcome any feedback or suggestions for improving the Pet Management Tool Application. Please feel free to reach out to us with your thoughts or ideas for enhancement.
 
-
-_Note: This readme file provides an overview of the Pet Management Tool Application. For detailed instructions on using the application, please refer to the user manual or help section within the app._
-
-[![Donate](./public_assets/buy_me_a_coffee.jpg)](https://www.paypal.com/paypalme/buyseanacoffee)
-
-
+[![Support Us](./public_assets/buy_me_a_coffee.jpg)](https://www.paypal.com/paypalme/buyseanacoffee)
 
 _Note: This readme file provides an overview of the Pet Management Tool Application. For detailed instructions on using the application, please refer to the user manual or help section within the app._
