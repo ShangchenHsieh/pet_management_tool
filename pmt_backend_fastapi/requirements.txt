@@ -1,3 +1,0 @@
-uvicorn[standard]
-sqlalchemy
-python-dotenv
