@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Double
+from sqlalchemy import Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
@@ -15,8 +15,8 @@ class Owner(Base):
     phone = Column(String)
     username = Column(String, nullable=False)
     password = Column(String, nullable=False)
-    
-    pet = relationship("Pet", back_populates="owner")
+    # relation
+    pets = relationship("Pet", back_populates="owner")
     
 ###########
 ### pet ###
@@ -30,12 +30,12 @@ class Pet(Base):
     name = Column(String, nullable=False)
     dob = Column(TIMESTAMP, nullable=True, server_default=text('now()'))
     age = Column(Integer, nullable=True)
-    
-    owner = relationship("Owner", back_populates="pet")
-    record = relationship("PetRecord", back_populates="pet")
-    feeding_record = relationship("PetFed", back_populates="pet")
-   
-################## 
+    # relation
+    owner = relationship("Owner", back_populates="pets")
+    records = relationship("PetRecord", back_populates="pet", cascade="all, delete-orphan")
+    feedings = relationship("PetFed", back_populates="pet", cascade="all, delete-orphan")
+
+##################
 ### pet record ###
 ##################
 class PetRecord(Base): 
@@ -43,10 +43,10 @@ class PetRecord(Base):
     id = Column(Integer, primary_key=True, nullable=False)
     pet_id = Column(Integer, ForeignKey("pet.id", ondelete="CASCADE"))
     date = Column(TIMESTAMP, nullable=False, server_default=text('now()'))
-    weight = Column(Double, nullable=True)
-    height = Column(Double, nullable=True)
-    
-    pet = relationship("Pet", back_populates="record")
+    weight = Column(Float, nullable=True)
+    height = Column(Float, nullable=True)
+    # relation
+    pet = relationship("Pet", back_populates="records")
 
 ######################
 ### feeding status ###
@@ -56,6 +56,5 @@ class PetFed(Base):
     id = Column(Integer, primary_key=True, nullable=False)
     pet_id = Column(Integer, ForeignKey("pet.id", ondelete="CASCADE"))
     time = Column(TIMESTAMP, nullable=False, server_default=text('now()'))
-    
-    pet = relationship("Pet", back_populates="feeding_record")
-
+    # relation
+    pet = relationship("Pet", back_populates="feedings")
