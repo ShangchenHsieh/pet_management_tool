@@ -4,22 +4,27 @@ from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from database import Base
 
-
-# owner
+#############
+### owner ###
+#############
 class Owner(Base): 
     __tablename__ = "owner"
     id = Column(Integer, primary_key=True, nullable=False)
     first_name = Column(String, nullable=False)
-    last_name = Column(String, nullable=False)
+    last_name = Column(String, nullable=True)
     phone = Column(String)
+    username = Column(String, nullable=False)
+    password = Column(String, nullable=False)
     
     pet = relationship("Pet", back_populates="owner")
     
-# pet
+###########
+### pet ###
+###########
 class Pet(Base): 
     __tablename__ = "pet"
     id = Column(Integer, primary_key=True, nullable=False)
-    ownder_id = Column(Integer, ForeignKey("owner.id", ondelete="CASCADE"), nullable=False)
+    owner_id = Column(Integer, ForeignKey("owner.id", ondelete="CASCADE"), nullable=False)
     breed = Column(String, nullable=True)
     species = Column(String, nullable=True)
     name = Column(String, nullable=False)
@@ -29,8 +34,10 @@ class Pet(Base):
     owner = relationship("Owner", back_populates="pet")
     record = relationship("PetRecord", back_populates="pet")
     feeding_record = relationship("PetFed", back_populates="pet")
-    
-# pet record
+   
+################## 
+### pet record ###
+##################
 class PetRecord(Base): 
     __tablename__ = "pet_record"
     id = Column(Integer, primary_key=True, nullable=False)
@@ -41,8 +48,9 @@ class PetRecord(Base):
     
     pet = relationship("Pet", back_populates="record")
 
-    
-# feeding status 
+######################
+### feeding status ###
+######################
 class PetFed(Base): 
     __tablename__ = "feeding_record"
     id = Column(Integer, primary_key=True, nullable=False)
