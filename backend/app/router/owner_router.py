@@ -1,6 +1,11 @@
 import fastapi 
 from schemas import Owner
-from fastapi import Response, status, HTTPException
+from fastapi import Response, status, HTTPException, Depends
+
+import models
+from database import get_db
+from sqlalchemy.orm import Session
+
 
 owner_router = fastapi.APIRouter(
     prefix="/owners",
@@ -9,47 +14,55 @@ owner_router = fastapi.APIRouter(
 
 
 @owner_router.get("/all")
-async def get_all_owners(): 
+def get_all_owners(db: Session = Depends(get_db)): 
     """
     get all the owners
     
     :return: JSON package containing all the owners
     """
-    return {"message": "Here are the owners"}
+    owners = db.query(models.Owner).all()
+    return owners
 
 @owner_router.get("/{id}")
-def get_owner_by_id(id: int):
+def get_owner_by_id(id: int, db: Session = Depends(get_db)):
     """
     get the owner by id 
     
     :param id: the id of the owner
     :return Owner: the Owner object(from pydantic) 
     """
-    found = False
-    
-    # if found
-    found = True
-    
-    if not found: 
+    owner = db.query(models.Owner).filter(models.Owner.id == id).first()
+
+    if not owner: 
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
-                            detail=f"owner with id: {id} wasn't found")
-    return {"id": id}
+                            detail=f"owner with id: {id} doesn't exist")
+    return {"id": owner}
 
 
 @owner_router.post("/", status_code=status.HTTP_201_CREATED)
-def create_owner(new_owner: Owner): 
+def create_owner(owner: Owner, db: Session = Depends(get_db)): 
     """
     create new owner with their personal info
 
-    :param new_owner: a JSON data converted to pydantic model by the pydantic library
+    :param owner: a JSON data converted to pydantic model by the pydantic library
     :return: temp. info 
     """  
-    # new_owner.dict() -> convert the pydantic model to a dictionary 
-    return {"new_owner": new_owner.last_name}
+    # new_owner.dict() -> convert the pydantic model to a dictionary ** to unpack the dictionary 
+    # new_owner = models.Owner(first_name=owner.first_name, 
+    #              last_name=owner.last_name, 
+    #              phone=owner.phone, 
+    #              username=owner.username, 
+    #              password=owner.password)
+    # this lines serves the same functionality as the codes above 
+    new_owner = models.Owner(** owner.model_dump()) # .dict() is deprecated 
+    db.add(new_owner)
+    db.commit()
+    db.refresh(new_owner)
+    return {"new_owner": new_owner}
 
 
 @owner_router.put("/{id}")
-def update_owner_by_id(id: int, owner: Owner):
+def update_owner_by_id(owner: Owner, id: int, db: Session = Depends(get_db)):
     """
     update owner information by id
     
@@ -57,32 +70,51 @@ def update_owner_by_id(id: int, owner: Owner):
     :param owner: Owner object with pydantic
     :return: 
     """
-    found = False
-    # found 
-    found = True
-    # not found
-    if not found: 
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
-                            detail=f"UPDATE: owner with id: {id} wasn't found")
-        
-    return {"message": "updated!"}
+    query = db.query(models.Owner).filter(models.Owner.id == id)
+
+    exist_owner = query.first()
+
+    if exist_owner == None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"owner with id: {id} wasn't found")
+
+
+    query.update(owner.model_dump(), synchronize_session=False)
+
+    db.commit()
+
+    return query.first()
 
     
 @owner_router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_owner_by_id(id: int):
+def delete_owner_by_id(id: int, db: Session = Depends(get_db)):
     """
     delete owner by id
     
     :param id: owner's id
     :return: Response with code 204
     """
-    found = False
-    # found 
-    found = True
-    # not found
-    if not found: 
+    owner_query = db.query(models.Owner).filter(models.Owner.id == id)
+    owner = owner_query.first()
+    if not owner: 
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
                             detail=f"DELETION: owner with id: {id} wasn't found")
+    owner_query.delete(synchronize_session=False)
+    db.commit()
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
+# add dummy users for testing 
+@owner_router.post("/dummy")
+def create_dummy_owners(db: Session = Depends(get_db)):
+    dummy_1 = models.Owner(first_name="first_1", last_name="last_1", phone="123456789", username="dummy1@gmail.com", password="dummy123")
+    dummy_2 = models.Owner(first_name="first_2", last_name="last_2", phone="987654321", username="dummy2@gmail.com", password="dummy234")
+    dummy_3 = models.Owner(first_name="first_3", last_name="last_3", phone="555666777", username="dummy3@gmail.com", password="dummy345")
+    dummy_4 = models.Owner(first_name="first_4", last_name="last_4", phone="444555666", username="dummy4@gmail.com", password="dummy456")
+
+    db.add(dummy_1)
+    db.add(dummy_2)
+    db.add(dummy_3)
+    db.add(dummy_4)
+    db.commit()
+    return {"message": "dummy users added"}
