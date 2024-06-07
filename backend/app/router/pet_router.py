@@ -1,6 +1,8 @@
 import fastapi 
 
-pet_router = fastapi.APIRouter()
+pet_router = fastapi.APIRouter(
+    
+)
 
 @pet_router.get("/pets")
 def get_pets(): 

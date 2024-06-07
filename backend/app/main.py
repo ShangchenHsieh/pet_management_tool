@@ -22,7 +22,7 @@ app.include_router(owner_router.owner_router)
 app.include_router(pet_router.pet_router)
 
 # this is an Easter Egg
-@app.get("/")
+@app.get("/root")
 async def root(): 
     return FileResponse("../../public_assets/cats.jpg")
 

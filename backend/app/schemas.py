@@ -11,7 +11,6 @@ class Owner(BaseModel):
     phone: Optional[str]
     username: EmailStr
     password: str
-
     
 ########### 
 ### Pet ###
