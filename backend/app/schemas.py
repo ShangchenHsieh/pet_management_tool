@@ -12,6 +12,14 @@ class Owner(BaseModel):
     username: EmailStr
     password: str
 
+# owner response model because we do not want to send unncessary information back to the user  
+class OwnerOut(BaseModel): 
+    first_name: str
+    username: EmailStr
+    
+    # tells the Pydantic model to read the data even if it is not a dict 
+    class Config: 
+        from_attributes = True 
     
 ########### 
 ### Pet ###

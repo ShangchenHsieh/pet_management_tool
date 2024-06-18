@@ -1,10 +1,11 @@
+from passlib.context import CryptContext 
 import fastapi 
-from schemas import Owner
+from schemas import Owner, OwnerOut
 from fastapi import Response, status, HTTPException, Depends
-
 import models
 from database import get_db
 from sqlalchemy.orm import Session
+from . import utils
 
 
 owner_router = fastapi.APIRouter(
@@ -36,29 +37,37 @@ def get_owner_by_id(id: int, db: Session = Depends(get_db)):
     if not owner: 
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
                             detail=f"owner with id: {id} doesn't exist")
-    return {"id": owner}
+    return owner
 
 
-@owner_router.post("/", status_code=status.HTTP_201_CREATED)
+@owner_router.post("/", status_code=status.HTTP_201_CREATED, response_model=OwnerOut)
 def create_owner(owner: Owner, db: Session = Depends(get_db)): 
     """
     create new owner with their personal info
 
     :param owner: a JSON data converted to pydantic model by the pydantic library
     :return: temp. info 
-    """  
+    """
+    
+    hashed_pw = utils.pwd_context.hash(owner.password)
+    owner.password = hashed_pw
+      
     # new_owner.dict() -> convert the pydantic model to a dictionary ** to unpack the dictionary 
     # new_owner = models.Owner(first_name=owner.first_name, 
     #              last_name=owner.last_name, 
     #              phone=owner.phone, 
     #              username=owner.username, 
     #              password=owner.password)
+    
     # this lines serves the same functionality as the codes above 
-    new_owner = models.Owner(** owner.model_dump()) # .dict() is deprecated 
+    new_owner = models.Owner(** owner.model_dump()) # new_owner is a sqlalchemy model 
+    
+    
+    
     db.add(new_owner)
     db.commit()
     db.refresh(new_owner)
-    return {"new_owner": new_owner}
+    return new_owner
 
 
 @owner_router.put("/{id}")
@@ -104,6 +113,7 @@ def delete_owner_by_id(id: int, db: Session = Depends(get_db)):
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
+
 # add dummy users for testing 
 @owner_router.post("/dummy")
 def create_dummy_owners(db: Session = Depends(get_db)):
@@ -118,3 +128,4 @@ def create_dummy_owners(db: Session = Depends(get_db)):
     db.add(dummy_4)
     db.commit()
     return {"message": "dummy users added"}
+
