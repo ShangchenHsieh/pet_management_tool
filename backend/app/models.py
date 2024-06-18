@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, LargeBinary
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.expression import text
 from sqlalchemy.sql.sqltypes import TIMESTAMP
@@ -13,8 +13,9 @@ class Owner(Base):
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=True)
     phone = Column(String)
-    username = Column(String, nullable=False)
+    username = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
+    
     # relation
     pets = relationship("Pet", back_populates="owner")
     
@@ -30,6 +31,7 @@ class Pet(Base):
     name = Column(String, nullable=False)
     dob = Column(TIMESTAMP, nullable=True, server_default=text('now()'))
     age = Column(Integer, nullable=True)
+    
     # relation
     owner = relationship("Owner", back_populates="pets")
     records = relationship("PetRecord", back_populates="pet", cascade="all, delete-orphan")
@@ -58,3 +60,4 @@ class PetFed(Base):
     time = Column(TIMESTAMP, nullable=False, server_default=text('now()'))
     # relation
     pet = relationship("Pet", back_populates="feedings")
+    
