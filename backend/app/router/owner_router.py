@@ -117,10 +117,11 @@ def delete_owner_by_id(id: int, db: Session = Depends(get_db)):
 # add dummy users for testing 
 @owner_router.post("/dummy")
 def create_dummy_owners(db: Session = Depends(get_db)):
-    dummy_1 = models.Owner(first_name="first_1", last_name="last_1", phone="123456789", username="dummy1@gmail.com", password="dummy123")
-    dummy_2 = models.Owner(first_name="first_2", last_name="last_2", phone="987654321", username="dummy2@gmail.com", password="dummy234")
-    dummy_3 = models.Owner(first_name="first_3", last_name="last_3", phone="555666777", username="dummy3@gmail.com", password="dummy345")
-    dummy_4 = models.Owner(first_name="first_4", last_name="last_4", phone="444555666", username="dummy4@gmail.com", password="dummy456")
+    pwd = utils.pwd_context.hash("pw123")
+    dummy_1 = models.Owner(first_name="first_1", last_name="last_1", phone="123456789", username="dummy1@gmail.com", password=pwd)
+    dummy_2 = models.Owner(first_name="first_2", last_name="last_2", phone="987654321", username="dummy2@gmail.com", password=pwd)
+    dummy_3 = models.Owner(first_name="first_3", last_name="last_3", phone="555666777", username="dummy3@gmail.com", password=pwd)
+    dummy_4 = models.Owner(first_name="first_4", last_name="last_4", phone="444555666", username="dummy4@gmail.com", password=pwd)
 
     db.add(dummy_1)
     db.add(dummy_2)
