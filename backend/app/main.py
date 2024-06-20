@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse 
-from router import test, pet_router, owner_router
+from router import test, pet_router, owner_router, auth
 from sqlalchemy.orm import Session
 from database import engine
 import models
@@ -20,6 +20,7 @@ app = FastAPI()
 app.include_router(test.router)
 app.include_router(owner_router.owner_router)
 app.include_router(pet_router.pet_router)
+app.include_router(auth.auth)
 
 # this is an Easter Egg
 @app.get("/")

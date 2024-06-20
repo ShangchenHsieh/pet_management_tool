@@ -24,8 +24,16 @@ class OwnerOut(BaseModel):
 ########### 
 ### Pet ###
 ###########
-# class Pet(BaseModel):
-      
+class Pet(BaseModel):
+    owner_id: int
+    breed: Optional[str] = None
+    species: Optional[str] = None
+    name: str
+    dob: Optional[datetime] = None
+    age: Optional[int] = None
+    
+    class Config: 
+        from_attributes = True
       
 #############
 ### Login ###
@@ -40,6 +48,15 @@ class Login(BaseModel):
 class Register(Login):
     confirm_pw: str
     
+#############
+### Token ###
+#############
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+class TokenData(BaseModel):
+    username: Optional[str] = None
+
 
 ##################
 ### Pet Record ###
