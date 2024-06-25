@@ -6,6 +6,8 @@ import models
 from database import get_db
 from sqlalchemy.orm import Session
 from . import utils
+from dotenv import load_dotenv
+import os
 
 
 owner_router = fastapi.APIRouter(
@@ -117,12 +119,14 @@ def delete_owner_by_id(id: int, db: Session = Depends(get_db)):
 # add dummy users for testing 
 @owner_router.post("/dummy")
 def create_dummy_owners(db: Session = Depends(get_db)):
+
     pwd = utils.pwd_context.hash("pw123")
+    admin = models.Owner(first_name="merlin", last_name="the_coder", username=os.getenv("ADMIN_USERNAME"), password=utils.pwd_context.hash(os.getenv("ADMIN_PW")))
     dummy_1 = models.Owner(first_name="first_1", last_name="last_1", phone="123456789", username="dummy1@gmail.com", password=pwd)
     dummy_2 = models.Owner(first_name="first_2", last_name="last_2", phone="987654321", username="dummy2@gmail.com", password=pwd)
     dummy_3 = models.Owner(first_name="first_3", last_name="last_3", phone="555666777", username="dummy3@gmail.com", password=pwd)
     dummy_4 = models.Owner(first_name="first_4", last_name="last_4", phone="444555666", username="dummy4@gmail.com", password=pwd)
-
+    db.add(admin)
     db.add(dummy_1)
     db.add(dummy_2)
     db.add(dummy_3)

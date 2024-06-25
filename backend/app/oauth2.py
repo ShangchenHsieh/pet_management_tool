@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 import schemas
 from fastapi import Depends, status, HTTPException
 from fastapi.security import OAuth2PasswordBearer
-from dotenv import load_dotenv
 import os
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
@@ -35,10 +34,11 @@ def verify_access_token(token: str, credentials_exceptions):
     """
     try: 
         payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
-        username = payload.get("username")
-        if username is None: 
+        user_id = payload.get("user_id")
+        first_name = payload.get("first_name")
+        if user_id is None: 
             raise credentials_exceptions
-        token_data = schemas.TokenData(username=username)
+        token_data = schemas.TokenData(id=user_id, first_name=first_name) # include the data in the token 
     except JWTError: 
         raise credentials_exceptions
     
