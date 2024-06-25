@@ -25,7 +25,6 @@ class OwnerOut(BaseModel):
 ### Pet ###
 ###########
 class Pet(BaseModel):
-    owner_id: int
     breed: Optional[str] = None
     species: Optional[str] = None
     name: str
@@ -55,7 +54,7 @@ class Token(BaseModel):
     access_token: str
     token_type: str
 class TokenData(BaseModel):
-    username: Optional[str] = None
+    id: int
 
 
 ##################
