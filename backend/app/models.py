@@ -15,6 +15,8 @@ class Owner(Base):
     phone = Column(String)
     username = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
+    # pic
+    
     
     # relation
     pets = relationship("Pet", back_populates="owner")
@@ -31,6 +33,8 @@ class Pet(Base):
     name = Column(String, nullable=False)
     dob = Column(TIMESTAMP, nullable=True, server_default=text('now()'))
     age = Column(Integer, nullable=True)
+    # pic
+    
     
     # relation
     owner = relationship("Owner", back_populates="pets")
@@ -43,8 +47,11 @@ class Pet(Base):
 class PetRecord(Base): 
     __tablename__ = "pet_record"
     id = Column(Integer, primary_key=True, nullable=False)
+    
+    owner_id = Column(Integer, ForeignKey("owner.id", ondelete="CASCADE"), nullable=False)
     pet_id = Column(Integer, ForeignKey("pet.id", ondelete="CASCADE"))
-    date = Column(TIMESTAMP, nullable=False, server_default=text('now()'))
+    
+    date = Column(TIMESTAMP, nullable=True, server_default=text('now()'))
     weight = Column(Float, nullable=True)
     height = Column(Float, nullable=True)
     # relation
@@ -53,6 +60,8 @@ class PetRecord(Base):
 ######################
 ### feeding status ###
 ######################
+
+# ignore for now 
 class PetFed(Base): 
     __tablename__ = "feeding_record"
     id = Column(Integer, primary_key=True, nullable=False)
