@@ -5,6 +5,7 @@ asttokens==2.4.1
 blinker==1.7.0
 Brlapi==0.8.3
 certifi==2020.6.20
+cffi==1.16.0
 chardet==4.0.0
 click==8.1.7
 colorama==0.4.4
@@ -87,6 +88,7 @@ ptyprocess==0.7.0
 pure-eval==0.2.2
 pyasn1==0.6.0
 pycairo==1.20.1
+pycparser==2.22
 pycups==2.0.1
 pydantic==2.6.4
 pydantic_core==2.16.3
