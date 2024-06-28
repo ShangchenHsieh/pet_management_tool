@@ -54,6 +54,7 @@ class PetRecord(Base):
     date = Column(TIMESTAMP, nullable=True, server_default=text('now()'))
     weight = Column(Float, nullable=True)
     height = Column(Float, nullable=True)
+    description = Column(String, nullable=True)
     # relation
     pet = relationship("Pet", back_populates="records")
 

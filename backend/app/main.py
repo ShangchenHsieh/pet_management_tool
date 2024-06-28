@@ -4,7 +4,7 @@ from router import pet_router, pet_record_router,owner_router, auth
 from sqlalchemy.orm import Session
 from database import engine
 import models
-
+from fastapi.middleware.cors import CORSMiddleware
 
 
 
@@ -21,7 +21,15 @@ app.include_router(owner_router.owner_router)
 app.include_router(pet_router.pet_router)
 app.include_router(auth.auth)
 app.include_router(pet_record_router.pet_record_router)
+origins = ["*"]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # this is an Easter Egg
 @app.get("/")
