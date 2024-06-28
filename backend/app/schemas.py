@@ -64,6 +64,7 @@ class PetRecord(BaseModel):
     date: Optional[datetime] = None
     weight: Optional[float] = None
     height: Optional[float] = None
+    description: Optional[str] = None
 
 
 
