@@ -32,7 +32,7 @@ app.add_middleware(
 )
 
 # this is an Easter Egg
-@app.get("/")
+@app.get("/34ST3R366")
 async def root(): 
     return FileResponse("../../public_assets/cats.jpg")
 
