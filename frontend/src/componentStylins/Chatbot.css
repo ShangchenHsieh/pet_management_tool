@@ -30,6 +30,7 @@
   }
   .chatbot {
     position: fixed;
+    height: 630px;
     right: 35px;
     bottom: 90px;
     width: 420px;
