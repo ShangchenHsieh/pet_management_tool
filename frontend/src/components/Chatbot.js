@@ -4,7 +4,7 @@ import "../componentStylins/Chatbot.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAppleAlt,
-  faHandPaper,
+  // faHandPaper,
   faPaperPlane,
   faSearch,
   faTimes, // Import the correct icon

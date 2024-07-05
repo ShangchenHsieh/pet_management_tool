@@ -13,8 +13,8 @@ const Navbar = () => {
       <div className="navbar-center">
         <div className="navbar-options">
           <Link to="/">Home</Link>
-          <Link to="/about">Frequent Q&A</Link>
-          <Link to="/services">Services</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/Q&A">Frequent Q&A</Link>
           <Link to="/contact">Contact</Link> 
         </div>
       </div>

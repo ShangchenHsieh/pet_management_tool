@@ -1,0 +1,34 @@
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+  
+.About-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  height: 100vh;
+  text-align: center;
+  background-image: url('../assets/cats.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+  opacity: .6;
+}
+
+.About-content {
+  background: rgba(0, 0, 0, 0.8); 
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 1600px; /* Adjust this value as needed */
+  margin: 200 auto;
+  margin-top: 40px;
+  box-sizing: border-box;
+}
+  

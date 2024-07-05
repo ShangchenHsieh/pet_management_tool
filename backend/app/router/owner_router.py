@@ -1,5 +1,6 @@
 from passlib.context import CryptContext 
 import fastapi 
+import schemas
 from schemas import Owner, OwnerOut
 from fastapi import Response, status, HTTPException, Depends
 import models
@@ -7,6 +8,7 @@ from database import get_db
 from sqlalchemy.orm import Session
 from . import utils
 from dotenv import load_dotenv
+import oauth2
 import os
 
 
@@ -73,15 +75,15 @@ def create_owner(owner: Owner, db: Session = Depends(get_db)):
 
 
 @owner_router.put("/{id}")
-def update_owner_by_id(owner: Owner, id: int, db: Session = Depends(get_db)):
+def update_owner_by_id(owner: Owner, id: int, db: Session = Depends(get_db), current_user: schemas.TokenData =  Depends(oauth2.get_current_user)):
     """
-    update owner information by id
+    required user to log in first, update owner information by id
     
     :param id: owner id
     :param owner: Owner object with pydantic
     :return: 
     """
-    query = db.query(models.Owner).filter(models.Owner.id == id)
+    query = db.query(models.Owner).filter(models.Owner.id == id, models.Owner.id == current_user.id)
 
     exist_owner = query.first()
 
