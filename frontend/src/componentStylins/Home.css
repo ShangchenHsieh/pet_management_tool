@@ -52,9 +52,10 @@ html, body, #root, .Home {
     overflow: auto; /* Allow the content to scroll if it overflows */
 }
 
-.content h1 {
+.content h1 ,h2 {
     margin-bottom: 20px;
     text-align: center;
+    color: rgb(255, 166, 0);
 }
 
 .content-body {

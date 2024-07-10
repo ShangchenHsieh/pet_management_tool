@@ -27,10 +27,10 @@ function Home() {
         <img src={logo} className="Home-logo" alt="logo" />
         <div className="overlay">
           <div className="content">
-            <h1>Your Content Here</h1>
+            <h2>PAWfect+</h2>
             <div className="content-body">
               <div className="content-left">
-                <h3>A tool where you can manage your <span>pet's well-being.</span></h3>
+                <h3>A perfect application designed to keep track of your <span>pets!</span></h3>
               </div>
               <div className="content-right">
                 <CustomCarousel>

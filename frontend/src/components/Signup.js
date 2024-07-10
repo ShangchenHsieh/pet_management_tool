@@ -11,7 +11,7 @@ const Singup = () => {
           <div class="container">
               <div class="row">
                   <div class="col-md-8 m-auto">
-                      <h1 class="display-4 text-center">Signup</h1>
+                      
                       <form action="">
                         <div class="form-group">
                           <input type="first_name" class="form-control form-control-lg" placeholder="first name" name="first_name" />
