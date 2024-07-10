@@ -20,6 +20,9 @@ const Navbar = () => {
       <div className="navbar-login">
         <Link to="/login">Login</Link>
       </div>
+      <div className="navbar-login">
+        <Link to="/signup">Sign Up</Link>
+      </div>
     </div>
   );
 }

@@ -6,6 +6,8 @@ import Dashboard from "./components/Dashboard";
 import Contact from "./components/Contact"
 import About from "./components/About"
 import QA from "./components/QA"
+import Login from "./components/Login"
+import Signup from "./components/Signup"
 
 function App() {
   console.log(process.env.REACT_APP_API_KEY)
@@ -16,6 +18,10 @@ function App() {
       <Route path="contact" element={<Contact/>} />
       <Route path="about" element={<About />} />
       <Route path="Q&A" element={<QA />} />
+
+      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<Signup />} />
+
     </Routes>
   );
 }
