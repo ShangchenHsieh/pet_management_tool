@@ -2,7 +2,7 @@ html, body, #root, .Home {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: auto; /* Allow the body to scroll */
 }
 
 .Home {
@@ -10,8 +10,10 @@ html, body, #root, .Home {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100%;
+    justify-content: flex-start; /* Adjust to start content from the top */
+    height: auto; /* Allow content to expand */
+    min-height: 100%; /* Ensure minimum height is 100% */
+    z-index: 1; /* Ensure it is behind the Navbar */
 }
 
 .Home-logo {
@@ -32,62 +34,115 @@ html, body, #root, .Home {
     background-color: rgba(255, 255, 255, 0.5); /* Adjusted opacity for visibility */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Adjust to start content from the top */
     padding: 20px; /* Adds space around the white content box */
     box-sizing: border-box;
+    overflow: auto; /* Allow the overlay to scroll if content overflows */
 }
-.content-body{
-    padding: 20px;
-}
-.content h1{
-    text-align: center;
-}
+
 .content {
     padding: 100px;
     background-color: white;
-    padding: 8px 60px 8px 60px; /* Adjust padding as needed */
+    padding: 8px 60px; /* Adjust padding as needed */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%; /* Full width minus padding */
     max-width: 1500px; /* Optional max-width */
-    max-height: 100%; /* Full height minus padding */
     box-sizing: border-box; /* Include padding in width and height */
-    overflow: hidden; 
-    
+    overflow: auto; /* Allow the content to scroll if it overflows */
 }
 
 .content h1 {
-    margin-bottom: 20px; 
-}
-
-.content-left{
-    padding-right:20px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .content-body {
-    display: flex; 
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
 }
 
 .content-left {
-    flex: 1; 
+    flex: 1;
     font-size: 40px; /* Adjust the font size as needed */
     font-weight: bold;
     margin-right: 15px;
-    
+    padding-right: 20px;
 }
-.content-left span{
+
+.content-left span {
     color: rgb(255, 196, 0);
 }
+
 .content-left p,
 .content-left h3 {
-    max-width: 280px; 
-    margin-right: auto; 
+    max-width: 300px;
+    margin-right: auto;
     margin-left: auto;
 }
+
 .content-right {
-    flex: 1; 
-    display: flex; 
-    align-items: center; 
+    flex: 1;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    margin-right: 10%;
+}
+
+.content-cards {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.content-cards h3{
+    text-align: c;
+}
+
+.card {
+    font-size: 20px;
+    flex: 1;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.card h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.card p {
+    margin: 10px 0 0;
+}
+
+.right-info{
+    margin-right: 10%;
+}
+.left-info{
+    margin-left: 10%;
+}
+.card:hover{
+    background-color: #f5df96;
+
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #eee; /* Adjust background color if needed */
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
