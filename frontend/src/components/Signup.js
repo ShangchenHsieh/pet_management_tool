@@ -41,16 +41,14 @@ const Signup = () => {
     const response = await fetch('http://127.0.0.1:8000/owners/', requestOptions);
     const data = await response.json();
     if (response.status === 409) {
-      setUsernameError('Username is already taken'); 
+      setUsernameError(data.detail); 
     } else {
-      setErrorMessage(response.detail);
+      setErrorMessage(data.detail);
     }
-    if (!response.ok) {
-      
-    } else {
-      setToken(data.access_token);
-    }
-  };
+    
+    setToken(data.access_token)
+    
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,6 +58,7 @@ const Signup = () => {
     if (!formData.first_name) validationErrors.first_name = 'First name is required';
     if (!formData.username) validationErrors.username = 'Username is required';
     if (!formData.password) validationErrors.password = 'Password is required';
+    if (!formData.confirm_password) validationErrors.confirm_password = 'Please confirm your password';
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
