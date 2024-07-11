@@ -38,15 +38,14 @@ const Signup = () => {
         password: formData.password,
       }),
     };
-    const response = await fetch('http://127.0.0.1:8000/owners/', requestOptions);
+    const response = await fetch('http://127.0.0.1:8000/owners', requestOptions);
     const data = await response.json();
     if (response.status === 409) {
       setUsernameError(data.detail); 
-    } else {
-      setErrorMessage(data.detail);
-    }
+    } 
     
-    setToken(data.access_token)
+    setToken(data.access_token);
+    localStorage.setItem('access_token', data.access_token);
     
   }
 
@@ -59,15 +58,16 @@ const Signup = () => {
     if (!formData.username) validationErrors.username = 'Username is required';
     if (!formData.password) validationErrors.password = 'Password is required';
     if (!formData.confirm_password) validationErrors.confirm_password = 'Please confirm your password';
+    if (formData.password !== formData.confirm_password) {
+      setErrorMessage('Password and Confirm Password do not match.');
+    }
+     
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      if (formData.password !== formData.confirm_password) {
-        setErrorMessage('Password and Confirm Password do not match.');
-      } else {
-        submitRegisteration();
+       submitRegisteration();
       }
-    }
+    
   };
 
   return (
