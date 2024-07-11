@@ -43,7 +43,7 @@ html, body, #root, .Home {
 .content {
     padding: 100px;
     background-color: white;
-    padding: 8px 60px; /* Adjust padding as needed */
+    padding: 8px 100px; /* Adjust padding as needed */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%; /* Full width minus padding */
@@ -61,7 +61,7 @@ html, body, #root, .Home {
 .content-body {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 40px;
 }
 
 .content-left {

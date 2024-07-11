@@ -11,7 +11,6 @@ const Login = () => {
           <div class="container">
               <div class="row">
                   <div class="col-md-8 m-auto">
-                    
                       <form action="">
                           <div class="form-group">
                               <input type="email" class="form-control form-control-lg" placeholder="username" name="email" />
