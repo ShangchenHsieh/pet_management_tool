@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useEffect} from "react";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
@@ -10,8 +10,24 @@ import Login from "./components/Login"
 import Signup from "./components/Signup"
 
 function App() {
-  console.log(process.env.REACT_APP_API_KEY)
+  
+  const getEasterEgg = async () => {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+    const response = await fetch("http://127.0.0.1:8000/34ST3R366", requestOptions )
+    const data = await response.json();
+    console.log(data);
+  }
+  useEffect(() => {
+    getEasterEgg()
+  }, [])
+
   return (
+    
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="dashboard" element={<Dashboard/>} />

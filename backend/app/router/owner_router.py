@@ -44,7 +44,7 @@ def get_owner_by_id(id: int, db: Session = Depends(get_db)):
     return owner
 
 
-@owner_router.post("/", status_code=status.HTTP_201_CREATED, response_model=OwnerOut)
+@owner_router.post("/", status_code=status.HTTP_201_CREATED)
 def create_owner(owner: Owner, db: Session = Depends(get_db)): 
     """
     create new owner with their personal info
@@ -52,6 +52,9 @@ def create_owner(owner: Owner, db: Session = Depends(get_db)):
     :param owner: a JSON data converted to pydantic model by the pydantic library
     :return: temp. info 
     """
+    query = db.query(models.Owner).filter(models.Owner.username == owner.username).first()
+    if(query): 
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Username already exists")
     
     hashed_pw = utils.pwd_context.hash(owner.password)
     owner.password = hashed_pw
@@ -71,7 +74,9 @@ def create_owner(owner: Owner, db: Session = Depends(get_db)):
     db.add(new_owner)
     db.commit()
     db.refresh(new_owner)
-    return new_owner
+    
+    access_token = oauth2.create_access_token(data={"user_id": new_owner.id, "first_name": new_owner.first_name})
+    return {"access_token": access_token, "token_type": "bearer"}
 
 
 @owner_router.put("/{id}")

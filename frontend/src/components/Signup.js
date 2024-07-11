@@ -1,42 +1,178 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Navbar from './Navbar';
-import '../componentStylins/QA.css';
+import '../componentStylins/Signup.css';
+import { UserContext } from '../context/UserContext';
 
-const Singup = () => {
+const Signup = () => {
+  const [formData, setFormData] = useState({
+    first_name: '',
+    last_name: '',
+    phone: '',
+    username: '',
+    password: '',
+    confirm_password: '',
+  });
+
+  const [, setToken] = useContext(UserContext);
+  const [errors, setErrors] = useState({});
+  const [errorMessage, setErrorMessage] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    setUsernameError(''); // Clear username error when user types in username
+  };
+
+  const submitRegisteration = async () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        phone: formData.phone,
+        username: formData.username,
+        password: formData.password,
+      }),
+    };
+    const response = await fetch('http://127.0.0.1:8000/owners/', requestOptions);
+    const data = await response.json();
+    if (response.status === 409) {
+      setUsernameError(data.detail); 
+    } else {
+      setErrorMessage(data.detail);
+    }
+    
+    setToken(data.access_token)
+    
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let validationErrors = {};
+
+    // Validate required fields
+    if (!formData.first_name) validationErrors.first_name = 'First name is required';
+    if (!formData.username) validationErrors.username = 'Username is required';
+    if (!formData.password) validationErrors.password = 'Password is required';
+    if (!formData.confirm_password) validationErrors.confirm_password = 'Please confirm your password';
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      if (formData.password !== formData.confirm_password) {
+        setErrorMessage('Password and Confirm Password do not match.');
+      } else {
+        submitRegisteration();
+      }
+    }
+  };
+
   return (
     <>
       <Navbar />
       <div className="About-container">
-        <div class="login">
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-8 m-auto">
-                      
-                      <form action="">
-                        <div class="form-group">
-                          <input type="first_name" class="form-control form-control-lg" placeholder="first name" name="first_name" />
-                        </div>
-                        <div class="form-group">
-                          <input type="last_name" class="form-control form-control-lg" placeholder="last name" name="last_name" />
-                        </div>
-                        <div class="form-group">
-                          <input type="phone" class="form-control form-control-lg" placeholder="phone" name="phone" />
-                        </div>
-                        <div class="form-group">
-                          <input type="username" class="form-control form-control-lg" placeholder="username" name="username" />
-                        </div>
-                        <div class="form-group">
-                          <input type="password" class="form-control form-control-lg" placeholder="password" name="password" />
-                        </div>
-                          <input type="submit" class="btn btn-info btn-block mt-4" />
-                      </form>
+        <div className="login">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 m-auto">
+                <form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="first_name" className="form-label">
+                      First Name<span className="required-asterisk">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      className={`form-control form-control-lg ${errors.first_name ? 'is-invalid' : ''}`}
+                      placeholder=""
+                      name="first_name"
+                      value={formData.first_name}
+                      onChange={handleChange}
+                    />
+                    {errors.first_name && <div className="invalid-feedback">{errors.first_name}</div>}
                   </div>
+                  <div className="form-group">
+                    <label htmlFor="last_name" className="form-label">
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control form-control-lg"
+                      placeholder=""
+                      name="last_name"
+                      value={formData.last_name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="phone" className="form-label">
+                      Phone
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control form-control-lg"
+                      placeholder="+1(xxx)-xxx-xxxx"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="username" className="form-label">
+                      Email<span className="required-asterisk">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      className={`form-control form-control-lg ${errors.username ? 'is-invalid' : ''}`}
+                      placeholder="example@gmail.com"
+                      name="username"
+                      value={formData.username}
+                      onChange={handleChange}
+                    />
+                    {usernameError && <div className="invalid-feedback">{usernameError}</div>}
+                    {errors.username && <div className="invalid-feedback">{errors.username}</div>}
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password" className="form-label">
+                      Password<span className="required-asterisk">*</span>
+                    </label>
+                    <input
+                      type="password"
+                      className={`form-control form-control-lg ${errors.password ? 'is-invalid' : ''}`}
+                      placeholder=""
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                    {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="password" className="form-label">
+                      Confirm Password<span className="required-asterisk">*</span>
+                    </label>
+                    <input
+                      type="password"
+                      className={`form-control form-control-lg ${errors.password ? 'is-invalid' : ''}`}
+                      placeholder=""
+                      name="confirm_password"
+                      value={formData.confirm_password}
+                      onChange={handleChange}
+                    />
+                    {errors.confirm_password && <div className="invalid-feedback">{errors.confirm_password}</div>}
+                  </div>
+                  <div className="invalid-feedback">{errorMessage}</div>
+                  <input type="submit" className="btn btn-info btn-block mt-4" value="Sign Up" />
+                </form>
               </div>
+            </div>
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
-export default Singup;
+export default Signup;
