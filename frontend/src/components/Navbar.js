@@ -1,6 +1,7 @@
 import React from 'react';
 import '../componentStylins/Navbar.css';
-import icon from '../assets/cat_paw_icon.png';
+
+import icon from "../assets/cat_paw_icon.png";
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
