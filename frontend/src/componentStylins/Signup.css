@@ -63,3 +63,24 @@
     transform: translateX(-5px);
   }
 }
+.signup-btn {
+  padding: 8px 12px;
+  margin-left: auto; /* Move the button to the right */
+  margin-right: auto; /* Move the button to the left */
+  display: block; /* Ensure it occupies full width */
+  transition: 0.5s;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #000;
+  font-size: 16px;
+
+  cursor: pointer;
+  width: 100px; /* Adjust width as needed */
+}
+
+.signup-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background-color: #f3e9d4c2;
+  border-radius: 5px;
+}

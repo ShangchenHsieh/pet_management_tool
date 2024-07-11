@@ -164,7 +164,7 @@ const Signup = () => {
                     {errors.confirm_password && <div className="invalid-feedback">{errors.confirm_password}</div>}
                   </div>
                   <div className="invalid-feedback">{errorMessage}</div>
-                  <input type="submit" className="btn btn-info btn-block mt-4" value="Sign Up" />
+                  <input type="submit" className="signup-btn" value="Register " />
                 </form>
               </div>
             </div>
