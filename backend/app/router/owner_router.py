@@ -17,6 +17,9 @@ owner_router = fastapi.APIRouter(
     tags=['Owners']
 )
 
+@owner_router.get("/user/me")
+async def get_user(current_user: schemas.TokenData =  Depends(oauth2.get_current_user)):
+    return current_user
 
 @owner_router.get("/all")
 def get_all_owners(db: Session = Depends(get_db)): 
