@@ -31,10 +31,12 @@ const Login = () => {
     const data = await response.json();
     if (response.status === 403) {
       setErrors(data.detail); 
-    } 
+    } else {
+      setToken(data.access_token);
+      localStorage.setItem('access_token', data.access_token);
+    }
 
-    setToken(data.access_token);
-    localStorage.setItem('access_token', data.access_token);
+    
     
   }
 
