@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import '../componentStylins/QA.css';
-
+import Chatbot from './Chatbot';
 const QA = () => {
   return (
     <>
@@ -21,6 +21,7 @@ const QA = () => {
           </p>
         </div>
       </div>
+      <Chatbot />
     </>
   );
 }

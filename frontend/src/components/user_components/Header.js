@@ -7,7 +7,8 @@ const Header = () => {
     const [token, setToken] = useContext(UserContext);
     const handleLogout = () => {
         setToken(null);
-        localStorage.setItem('access_token', null)
+        localStorage.setItem('access_token', null);
+        localStorage.removeItem('access_token')
     }
     return (
         <div className="navbar">

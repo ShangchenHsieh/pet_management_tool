@@ -17,13 +17,14 @@ const Signup = () => {
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [usernameError, setUsernameError] = useState('');
-
+  let validationErrors = {};
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-    setUsernameError(''); // Clear username error when user types in username
+    setUsernameError(''); 
+    validationErrors = {};
   };
 
   const submitRegisteration = async () => {
@@ -43,30 +44,36 @@ const Signup = () => {
     if (response.status === 409) {
       setUsernameError(data.detail); 
     } 
+    else {
+      setToken(data.access_token);
+      localStorage.setItem('access_token', data.access_token);
+    }
     
-    setToken(data.access_token);
-    localStorage.setItem('access_token', data.access_token);
+    
     
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let validationErrors = {};
+    
 
     // Validate required fields
     if (!formData.first_name) validationErrors.first_name = 'First name is required';
     if (!formData.username) validationErrors.username = 'Username is required';
     if (!formData.password) validationErrors.password = 'Password is required';
     if (!formData.confirm_password) validationErrors.confirm_password = 'Please confirm your password';
+
     if (formData.password !== formData.confirm_password) {
       setErrorMessage('Password and Confirm Password do not match.');
     }
-     
-    if (Object.keys(validationErrors).length > 0) {
+    else if (Object.keys(validationErrors).length > 0 || errorMessage.length === 1 || usernameError === 1) {
       setErrors(validationErrors);
-    } else {
-       submitRegisteration();
-      }
+    } 
+    else 
+    {
+      submitRegisteration();
+    }
+     
     
   };
 

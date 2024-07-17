@@ -11,6 +11,7 @@ import cat from '../assets/petImages/cat.jpg';
 import health from '../assets/icons/health.png';
 import log from '../assets/icons/log.png';
 import diet from '../assets/icons/diet.png';
+import python from '../assets/default_pic/python.jpg'
 
 function Home() {
   const images = [
@@ -18,6 +19,7 @@ function Home() {
     { imgURL: parrot, imgAlt: 'parrot' },
     { imgURL: turtle, imgAlt: 'turtle' },
     { imgURL: cat, imgAlt: 'cat' },
+    // { imgURL: python, imgAlt: 'python' },
   ];
 
   return (
