@@ -19,6 +19,7 @@ const Signup = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [usernameError, setUsernameError] = useState('');
   let validationErrors = {};
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -50,9 +51,6 @@ const Signup = () => {
       localStorage.setItem('access_token', data.access_token);
       navigate('/userdashboard')
     }
-    
-    
-    
   }
 
   const handleSubmit = (e) => {
@@ -173,7 +171,7 @@ const Signup = () => {
                     {errors.confirm_password && <div className="invalid-feedback">{errors.confirm_password}</div>}
                   </div>
                   <div className="invalid-feedback">{errorMessage}</div>
-                  <input type="submit" className="signup-btn" value="Register " />
+                  <input type="submit" className="signup-btn" value="Register" />
                 </form>
               </div>
             </div>

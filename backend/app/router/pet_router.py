@@ -17,7 +17,7 @@ pet_router = fastapi.APIRouter(
 # The following function are only available when the users are logged in
 # Their operations should be associated with the user id's 
 
-@pet_router.get("/all", response_model=List[schemas.Pet])
+@pet_router.get("/all")
 def get_all_pets(db: Session = Depends(get_db), current_user: schemas.TokenData =  Depends(oauth2.get_current_user)):
     """
     Get all the pets owned by the current user
@@ -45,7 +45,7 @@ def get_pet_by_id(id: int, db: Session = Depends(get_db), current_user: schemas.
                             detail=f"Pet with id: {id} doesn't belong to this owner")
     return pet
 
-@pet_router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.Pet)
+@pet_router.post("/", status_code=status.HTTP_201_CREATED)
 def create_pet(pet: schemas.Pet, db: Session = Depends(get_db), current_user: schemas.TokenData =  Depends(oauth2.get_current_user)):
     """
     Create new pet with their info

@@ -5,8 +5,8 @@ import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
+    username: null,
+    password: null,
   });
 
   const [, setToken] = useContext(UserContext);
@@ -18,7 +18,7 @@ const Login = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    
+    setErrors('');
   };
 
   const submitLogin = async () => {
@@ -29,9 +29,10 @@ const Login = () => {
     };
     const response = await fetch('http://127.0.0.1:8000/login', requestOptions);
     const data = await response.json();
-    if (response.status === 403) {
+    if (response.status === 403 || formData.username == null || formData.password == null) {
       setErrors(data.detail); 
     } 
+
     else {
       setToken(data.access_token);
       localStorage.setItem('access_token', data.access_token);
