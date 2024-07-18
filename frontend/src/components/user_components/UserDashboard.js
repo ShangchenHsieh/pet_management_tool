@@ -59,7 +59,7 @@ const UserDashboard = () => {
 
         const pet = await response.json();
         setSelectedPet(pet);
-        console.log(selectedPet);
+        console.log(pet);
     }
     // a picture of the pet + its name
     return (
@@ -68,17 +68,21 @@ const UserDashboard = () => {
                 <div>
                     {data.map((pet, index) => (
                         <div key={index}>
-                        
                             <button onClick={() => handleCardClick(pet.id)}>{renderField(pet.name)}</button>
-                            <p>Species: {renderField(pet.species)}</p>
-                            <p>Breed: {renderField(pet.breed)}</p>
-                            <p>Age: {renderField(pet.age)}</p>
-                            <p>Date of Birth: {pet.dob ? new Date(pet.dob).toLocaleDateString() : "N/A"}</p>
                         </div>
                     ))}
                 </div>
             ) : (
                 <div>Loading...</div>
+            )}
+            {selectedPet && (
+                <div>
+                    <h3>{renderField(selectedPet.name)}</h3>
+                    <p>Species: {renderField(selectedPet.species)}</p>
+                    <p>Breed: {renderField(selectedPet.breed)}</p>
+                    <p>Age: {renderField(selectedPet.age)}</p>
+                    <p>Date of Birth: {selectedPet.dob ? new Date(selectedPet.dob).toLocaleDateString() : "N/A"}</p>
+                </div>
             )}
             {errorMessage && <div>{errorMessage}</div>}
         </div>

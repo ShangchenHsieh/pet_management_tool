@@ -25,6 +25,7 @@ class OwnerOut(BaseModel):
 ### Pet ###
 ###########
 class Pet(BaseModel):
+    id: int
     breed: Optional[str] = None
     species: Optional[str] = None
     name: str
