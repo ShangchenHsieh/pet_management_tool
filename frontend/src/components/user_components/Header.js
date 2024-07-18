@@ -2,14 +2,16 @@ import React, { useContext } from 'react';
 import '../../componentStylins/Navbar.css';
 import { UserContext } from '../../context/UserContext';
 import icon from '../../assets/cat_paw_icon.png';
-
+import { useNavigate } from 'react-router-dom';
 const Header = () => {
   const [token, setToken] = useContext(UserContext);
   const handleLogout = () => {
       setToken(null);
       localStorage.setItem('access_token', null);
-      localStorage.removeItem('access_token')
+      localStorage.removeItem('access_token');
+      navigate('/');
   }
+  const navigate = useNavigate();
   return (
       <div className="navbar">
           <div className="navbar-left">
