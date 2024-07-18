@@ -2,7 +2,7 @@ import React, { useState, useContext }  from 'react';
 import Navbar from './Navbar';
 import '../componentStylins/QA.css';
 import { UserContext } from '../context/UserContext';
-
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -11,7 +11,7 @@ const Login = () => {
 
   const [, setToken] = useContext(UserContext);
   const [errors, setErrors] = useState('');
-
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -31,9 +31,11 @@ const Login = () => {
     const data = await response.json();
     if (response.status === 403) {
       setErrors(data.detail); 
-    } else {
+    } 
+    else {
       setToken(data.access_token);
       localStorage.setItem('access_token', data.access_token);
+      navigate('/userdashboard')
     }
 
     

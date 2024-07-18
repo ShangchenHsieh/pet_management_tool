@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import Navbar from './Navbar';
 import '../componentStylins/Signup.css';
 import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ const Signup = () => {
     password: '',
     confirm_password: '',
   });
-
+  const navigate = useNavigate();
   const [, setToken] = useContext(UserContext);
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
@@ -47,6 +48,7 @@ const Signup = () => {
     else {
       setToken(data.access_token);
       localStorage.setItem('access_token', data.access_token);
+      navigate('/userdashboard')
     }
     
     

@@ -7,8 +7,11 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <div className="navbar">
-      <div className="navbar-logo">
-        <img src={icon} alt="Logo" />
+      <div className="navbar-left">
+        <div className="navbar-logo">
+            <img src={icon} alt="Logo" />
+        </div>
+        <h3>PAWfect+</h3>
       </div>
       <div className="navbar-center">
         <div className="navbar-options">

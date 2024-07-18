@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import { jwtDecode } from "jwt-decode";
+import { Link } from 'react-router-dom';
 
 const UserDashboard = () => {
     const [token] = useContext(UserContext);
@@ -64,6 +65,8 @@ const UserDashboard = () => {
     // a picture of the pet + its name
     return (
         <div>
+        <div className="navbar-options"> <Link to="/addpet">Add a New Pet</Link></div>
+        
             {loaded ? (
                 <div>
                     {data.map((pet, index) => (
