@@ -57,6 +57,10 @@ const AddPet = () => {
         createNewPet();
     }
 
+    const handleCancel = () => {
+      navigate('/userdashboard')
+    }
+
 
     return (
         <>
@@ -134,6 +138,7 @@ const AddPet = () => {
             
                         <input type="submit" className="signup-btn" value="Create" />
                     </form>
+                    <button className="signup-btn" onClick={handleCancel}>Cancel</button>
                   </div>
                 </div>
               </div>

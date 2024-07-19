@@ -1,6 +1,6 @@
 import {React, useContext, useEffect} from "react";
 // eslint-disable-next-line
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate} from "react-router-dom";
 import Home from "./components/Home";
 import Contact from "./components/Contact"
 import About from "./components/About"
@@ -11,14 +11,26 @@ import { UserContext } from "./context/UserContext";
 import Header from "./components/user_components/Header";
 import UserDashboard from "./components/user_components/UserDashboard";
 import AddPet from "./components/user_components/AddPet";
+import UpdatePet from "./components/user_components/UpdatePet";
+import PetCard from "./components/user_components/PetCard";
+import { jwtDecode } from "jwt-decode";
 function App() {
-  const [token,] = useContext(UserContext);
-  // const decoded_oken = jwt_decode(token);
-  // const currentTime = Date.now()/1000;
-  // if(decoded_jwtToken.exp < currentTime) {
-  //   store.dispatch(logout())
-  //   window.location.href="/";
-  // }
+  const [token, setToken] = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+
+      if (decodedToken.exp < currentTime) {
+        setToken(null); 
+        localStorage.removeItem("access_token");
+        navigate("/login"); 
+      } 
+    }
+  }, [token, setToken, navigate]);
+
   return (
 
     <div>
@@ -38,6 +50,8 @@ function App() {
           <Routes>
             <Route path="userdashboard" element={<UserDashboard />} />
             <Route path="addpet" element={<AddPet />} />
+            <Route path="updatepet" element={<UpdatePet />} />
+            <Route path="petcard" element={<PetCard />} />
           </Routes>
           
         </div>
