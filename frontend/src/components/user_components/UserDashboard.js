@@ -3,7 +3,9 @@ import { UserContext } from "../../context/UserContext";
 import { jwtDecode } from "jwt-decode";
 import { Link, useNavigate } from 'react-router-dom';
 import PetCard from "./PetCard";
-
+import PageContent from "../PageContent";
+import SideMenu from "../SideMenu";
+import '../../componentStylins/Dashboard.css';
 const UserDashboard = () => {
     const [token] = useContext(UserContext);
     const [errorMessage, setErrorMessage] = useState("");
@@ -82,6 +84,11 @@ const UserDashboard = () => {
             ) : (
                 <div>Loading...</div>
             )}
+            <div className="SideMenuAndPageContent">
+            <SideMenu></SideMenu>
+            <PageContent></PageContent>
+            </div>
+            
         </div>
     );
 };
