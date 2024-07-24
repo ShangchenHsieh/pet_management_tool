@@ -1,0 +1,125 @@
+.dashboard-container {
+    position: relative; /* Ensure that the container is positioned relative for overlay positioning */
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    max-width: 230px;
+    text-align: center;
+    transition: transform 0.2s;
+    width: 100%;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    height: 150px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.card-content {
+    padding: 16px;
+}
+
+.card-content h3 {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.navbar-options {
+    margin: 20px;
+}
+.navbar-options{
+    display: flex;
+    
+}
+.error {
+    color: red;
+    text-align: center;
+}
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.update-button,
+.delete-button {
+    background-color: #d8e7d8; /* Green */
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.update-button {
+    background-color: #d9f3da; /* Green */
+    color: black;
+    margin-right: 1px;
+}
+
+.delete-button {
+    background-color: #e0bbb8; /* Red */
+    color: black;
+    margin-left: 2px;
+}
+
+.update-button:hover {
+    background-color: #45a049;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+.navbar-options {
+    margin: 20px;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}
+
+.update-pet-container-overlay {
+    position: fixed; /* Fixed position to overlay on top of everything */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* High z-index to ensure it appears on top */
+}
+
+.update-pet-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+}
