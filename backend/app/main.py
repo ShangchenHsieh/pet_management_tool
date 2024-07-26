@@ -10,7 +10,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # source venv/bin/activate
 
-# start server on MacOS: "$ python3 -m uvicorn main:app --reload" (system path not configured correctly)
 # start server on Linux: "$ uvicorn main:app --reload"
 
 models.Base.metadata.create_all(bind=engine)

@@ -1,7 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate, useLocation } from "react-router-dom";
 
+// Import images for different species
+import cat from "../../assets/cat.jpg";
+import dog from "../../assets/dog.jpg";
+import rabbit from "../../assets/rabbit.jpg";
+import python from "../../assets/python.jpg";
+import pigeon from "../../assets/stupid_bird.jpg";
+import mouse from "../../assets/unknown_animal.jpg";
 
 const PetCard = () => {
     const navigate = useNavigate();
@@ -13,36 +20,57 @@ const PetCard = () => {
     const handleCancel = () => {
         navigate('/userdashboard');
     };
+
     const handleUpdatePet = () => {
         console.log(selectedPet);
         navigate("/updatepet", { state: { selectedPet } });
     }
 
     const handleDeletePet = async (id) => {
-        if(window.confirm("WARNING! This action will delete this pet and all of its records. Do you still want to continue?")) {
+        if (window.confirm("WARNING! This action will delete this pet and all of its records. Do you still want to continue?")) {
             const requestOptions = {
                 method: "DELETE",
                 headers: {
-                        Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${token}`,
                 },
-            }
+            };
             const response = await fetch(`http://127.0.0.1:8000/pets/${id}`, requestOptions);
             if (!response.ok) {
                 throw new Error("Failed to delete pet.");
             }
-            if(response.status === 204) {
+            if (response.status === 204) {
                 console.log("Pet was deleted successfully.");
                 navigate("/userdashboard");
             }
-    
         }
-    } 
+    };
 
     const renderField = (field) => (field !== null && field !== undefined ? field : "N/A");
+
+    const getDefaultImage = (species) => {
+        switch (species) {
+            case "cat":
+                return cat;
+            case "dog":
+                return dog;
+            case "rabbit":
+                return rabbit;
+            case "python":
+                return python;
+            case "pigeon":
+                return pigeon;
+            case "mouse":
+                return mouse;
+            default:
+                return null;
+        }
+    };
+
     return (
         <div>
             <h2>Pet Information</h2>
             <div>
+                <img src={getDefaultImage(selectedPet.species)} alt={selectedPet.species} style={{ width: '200px', height: '200px' }} />
                 <h3>{renderField(selectedPet.name)}</h3>
                 <p>Species: {renderField(selectedPet.species)}</p>
                 <p>Breed: {renderField(selectedPet.breed)}</p>
@@ -50,11 +78,10 @@ const PetCard = () => {
                 <p>Date of Birth: {selectedPet.dob ? new Date(selectedPet.dob).toLocaleDateString() : "N/A"}</p>
                 <button onClick={handleUpdatePet}>Update</button>
                 <button onClick={() => handleDeletePet(selectedPet.id)}>Delete</button>
-                    
             </div>
             <button onClick={handleCancel}>Return</button>
         </div>
-        
-    )
-}
+    );
+};
+
 export default PetCard;

@@ -78,11 +78,13 @@ function Home() {
                   Monitor their activity levels over time to make sure they are staying active and healthy. 
                   You can also set fitness goals and track progress towards achieving them.
                 </p>              </div>
+                <Chatbot />
             </div>
-
+            
           </div>
+          
         </div>
-        <Chatbot />
+       
       </div>
       
     </>

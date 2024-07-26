@@ -2,13 +2,17 @@ import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import { jwtDecode } from "jwt-decode";
 import { Link, useNavigate } from 'react-router-dom';
-import PetCard from "./PetCard";
+
 import AddPet from "./AddPet";
 import cat from "../../assets/cat.jpg";
 import dog from "../../assets/dog.jpg";
 import rabbit from "../../assets/rabbit.jpg";
 import python from "../../assets/python.jpg";
+import pigeon from "../../assets/stupid_bird.jpg";
+import mouse from "../../assets/unknown_animal.jpg";
 import '../../componentStylins/userDashboard.css';
+import paw from "../../assets/default_pic/dog-placeholder.jpg"
+
 const UserDashboard = () => {
     const [token] = useContext(UserContext);
     const [errorMessage, setErrorMessage] = useState("");
@@ -73,9 +77,7 @@ const UserDashboard = () => {
 
     useEffect(() => {
         fetchData();
-    }, [token, ]);
-
-    
+    }, [token]);
 
     const handleCardClick = async (id) => {
         const requestOptions = {
@@ -93,11 +95,13 @@ const UserDashboard = () => {
         const pet = await response.json();
         setSelectedPet(pet);
         navigate("/petcard", { state: { selectedPet: pet } });
-    }
+    };
+
     const handleUpdateClick = (pet) => {
         setSelectedPet(pet);
         setShowUpdatePet(true);
     };
+
     const getDefaultImage = (type) => {
         switch (type) {
             case "cat":
@@ -108,26 +112,36 @@ const UserDashboard = () => {
                 return rabbit;
             case "python":
                 return python;
+            case "pigeon":
+                return pigeon;
+            case "mouse":
+                return mouse;
             default:
-                return cat;
+                return paw;
         }
     };
+
     const handleDelete = async (id) => {
-        const requestOptions = {
-            method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        };
-
-        const response = await fetch(`http://127.0.0.1:8000/pets/${id}`, requestOptions);
-        if (!response.ok) {
-            setErrorMessage("Failed to delete pet.");
-            return;
+        if(window.confirm("WARNING! This action will delete this pet and all of its records. Do you still want to continue?")) {
+            const requestOptions = {
+                method: "DELETE",
+                headers: {
+                        Authorization: `Bearer ${token}`,
+                },
+            }
+            const response = await fetch(`http://127.0.0.1:8000/pets/${id}`, requestOptions);
+            if (!response.ok) {
+                throw new Error("Failed to delete pet.");
+            }
+            if(response.status === 204) {
+                console.log("Pet was deleted successfully.");
+                navigate("/userdashboard");
+            }
+    
         }
-
         setData(data.filter(pet => pet.id !== id));
     };
+
     const handleUpdateSubmit = async (formData) => {
         const requestOptions = {
             method: 'PUT', 
@@ -152,8 +166,6 @@ const UserDashboard = () => {
             setErrorMessage(data.message || 'Failed to update pet');
         }
     };
-
-
 
     return (
         <div className="dashboard-container">
@@ -196,13 +208,20 @@ const UserDashboard = () => {
                                 <label htmlFor="species" className="form-label">
                                     Species
                                 </label>
-                                <input
-                                    type="text"
+                                <select
                                     className="form-control form-control-lg"
                                     name="species"
                                     value={formData.species}
                                     onChange={(e) => setFormData({ ...formData, species: e.target.value })}
-                                />
+                                >
+                                    <option value="">Select Species</option>
+                                    <option value="cat">Cat</option>
+                                    <option value="dog">Dog</option>
+                                    <option value="rabbit">Rabbit</option>
+                                    <option value="python">Python</option>
+                                    <option value="pigeon">Pigeon</option>
+                                    <option value="mouse">Mouse</option>
+                                </select>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="dob" className="form-label">
@@ -235,7 +254,7 @@ const UserDashboard = () => {
                 </div>
             )}
             <div className="navbar-options">
-            <div className="navbar-options"> <Link to="/addpet">Add a New Pet</Link></div>
+                <Link to="/addpet">Add a New Pet</Link>
             </div>
             {showAddPet && <AddPet onClose={() => setShowAddPet(false)} />}
             <div className="card-container">
@@ -244,10 +263,7 @@ const UserDashboard = () => {
                         <img src={pet.image || getDefaultImage(pet.species)} alt={pet.name} />
                         <div className="card-content">
                             <h3>{pet.name}</h3>
-                            <p>Species: {pet.species}</p>
-                            <p>Breed: {pet.breed}</p>
-                            <p>Age: {pet.age}</p>
-                            <p>Date of birth: {pet.dob}</p>
+                                
                             <div className="card-buttons">
                                 <button className="update-button" onClick={(e) => {
                                     e.stopPropagation(); // Prevent triggering card click
