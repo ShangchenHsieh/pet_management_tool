@@ -158,7 +158,7 @@
 
 /* Basic styling for the input field */
 .form-control-lg {
-    width: 150px; /* Full width */
+    width: 40%; /* Full width */
     padding: 7px; /* Space inside the input field */
     border: 2px solid #ccc; /* Light grey border */
     border-radius: 4px; /* Rounded corners */

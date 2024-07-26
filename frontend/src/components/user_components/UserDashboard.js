@@ -17,7 +17,7 @@ import rabbit from "../../assets/rabbit.jpg";
 import python from "../../assets/python.jpg";
 import pigeon from "../../assets/stupid_bird.jpg";
 import mouse from "../../assets/unknown_animal.jpg";
-import '../../componentStylins/userDashboard.css';
+import '../../componentStylins/UserDashboard.css';
 import paw from "../../assets/default_pic/dog-placeholder.jpg"
 
 const UserDashboard = () => {
