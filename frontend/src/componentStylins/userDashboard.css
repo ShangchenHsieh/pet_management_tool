@@ -1,5 +1,45 @@
 .dashboard-container {
-    position: relative; /* Ensure that the container is positioned relative for overlay positioning */
+    display: flex;
+}
+
+.sidebar {
+    background-color: #f7f7f7;
+    border-right: 1px solid #ddd;
+    height: 100vh;
+    padding: 20px;
+    width: 250px;
+    position: fixed;
+    transition: 0.8s;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    transition: 0.4s;
+    padding: 5px;
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sidebar ul li:hover {
+    background-color: #f5df96a4;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+}
+
+.main-content {
+    margin-left: 270px; /* Adjust based on sidebar width */
+    padding: 20px;
+    width: calc(100% - 270px);
 }
 
 .card-container {
@@ -20,6 +60,8 @@
     text-align: center;
     transition: transform 0.2s;
     width: 100%;
+    min-width: 230px;
+    margin-right: 22px;
 }
 
 .card:hover {
@@ -45,15 +87,14 @@
 
 .navbar-options {
     margin: 20px;
-}
-.navbar-options{
     display: flex;
-    
 }
+
 .error {
     color: red;
     text-align: center;
 }
+
 .card-buttons {
     display: flex;
     justify-content: space-between;
@@ -80,7 +121,7 @@
 }
 
 .delete-button {
-    background-color: #e0bbb8; /* Red */
+    background-color: #f0b98386; /* Red */
     color: black;
     margin-left: 2px;
 }
@@ -90,16 +131,7 @@
 }
 
 .delete-button:hover {
-    background-color: #d32f2f;
-}
-
-.navbar-options {
-    margin: 20px;
-}
-
-.error {
-    color: red;
-    text-align: center;
+    background-color: #d3c22f;
 }
 
 .update-pet-container-overlay {
@@ -123,3 +155,42 @@
     max-width: 500px;
     width: 100%;
 }
+
+/* Basic styling for the input field */
+.form-control-lg {
+    width: 40%; /* Full width */
+    padding: 7px; /* Space inside the input field */
+    border: 2px solid #ccc; /* Light grey border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Text size */
+    outline: none; /* Remove default outline */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Inner shadow for a subtle effect */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for border and shadow */
+  }
+  
+  /* Focus state styling */
+  .form-control-lg:focus {
+    border-color: #007BFF; /* Blue border when focused */
+    box-shadow: 0 0 5px rgba(0,123,255,0.5); /* Blue shadow when focused */
+  }
+  
+  /* Placeholder text styling */
+  .form-control-lg::placeholder {
+    color: #888; /* Grey placeholder text */
+    font-style: italic; /* Italicize placeholder text */
+  }
+  @media (max-width: 600px) {
+    .sidebar {
+      width: 0;
+      overflow: hidden;
+      padding: 0;
+    }
+  
+    .sidebar.hidden {
+      display: none;
+    }
+  
+    .main-content {
+      margin-left: 0;
+    }
+  }
