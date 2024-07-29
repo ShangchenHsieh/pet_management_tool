@@ -76,7 +76,7 @@ const AddPet = () => {
                 <div className="main-content">
                   
               
-            <div className="About-container">
+            <div className="">
             <div className="login">
               <div className="container">
                 <div className="row">
@@ -96,6 +96,27 @@ const AddPet = () => {
                         />
                         {errors && <div className="invalid-feedback">{errors}</div>}
                       </div>
+
+                      <div className="form-group">
+                        <label htmlFor="species" className="form-label">
+                            Species
+                        </label>
+                        <select
+                            className="form-control form-control-lg"
+                            name="species"
+                            value={formData.species}
+                            onChange={(e) => setFormData({ ...formData, species: e.target.value })}
+                        >
+                            <option value="">Select Species</option>
+                            <option value="cat">Cat</option>
+                            <option value="dog">Dog</option>
+                            <option value="rabbit">Rabbit</option>
+                            <option value="python">Python</option>
+                            <option value="pigeon">Pigeon</option>
+                            <option value="mouse">Mouse</option>
+                        </select>
+                      </div>
+
                       <div className="form-group">
                         <label htmlFor="Breed" className="form-label">
                             Breed
@@ -109,19 +130,7 @@ const AddPet = () => {
                           onChange={handleChange}
                         />
                       </div>
-                      <div className="form-group">
-                        <label htmlFor="species" className="form-label">
-                        Species
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control form-control-lg"
-                          placeholder="optional"
-                          name="species"
-                          value={formData.species}
-                          onChange={handleChange}
-                        />
-                      </div>
+                      
                       <div className="form-group">
                         <label htmlFor="dob" className="form-label">
                           Birthday
