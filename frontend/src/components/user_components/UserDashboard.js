@@ -114,7 +114,7 @@ const UserDashboard = () => {
                 return rabbit;
             case "python":
                 return python;
-            case "pigeon":
+            case "pigeon", 'Bird':
                 return pigeon;
             case "mouse":
                 return mouse;
@@ -142,16 +142,16 @@ const UserDashboard = () => {
                             icon={
                                 <UserOutlined
                                     style={{
-                                        color: "green",
-                                        backgroundColor: "rgba(0,255,0,0.25)",
+                                        color: "rgba(45,65,53,0.7)",
+                                        backgroundColor: "rgba(45,65,53,0.25)",
                                         borderRadius: 20,
                                         fontSize: 24,
                                         padding: 8,
                                     }}
                                 />
                             }
-                            title={"pets"}
-                            value={1} // Assuming 'data' represents employees
+                            title={"Number of Pets"}
+                            value={data.length} // Assuming 'data' represents employees
                         />
                         <DashboardCard
                             icon={
