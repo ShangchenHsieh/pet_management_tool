@@ -32,7 +32,7 @@ def get_all_owners(db: Session = Depends(get_db)):
     return owners
 
 @owner_router.get("/{id}")
-def get_owner_by_id(id: int, db: Session = Depends(get_db)):
+def get_owner_by_id(id: int, db: Session = Depends(get_db), current_user: schemas.TokenData =  Depends(oauth2.get_current_user)):
     """
     get the owner by id 
     
@@ -83,7 +83,7 @@ def create_owner(owner: Owner, db: Session = Depends(get_db)):
 
 
 @owner_router.put("/{id}")
-def update_owner_by_id(owner: Owner, id: int, db: Session = Depends(get_db), current_user: schemas.TokenData =  Depends(oauth2.get_current_user)):
+def update_owner_by_id(owner: schemas.UpdateOwner, id: int, db: Session = Depends(get_db), current_user: schemas.TokenData =  Depends(oauth2.get_current_user)):
     """
     required user to log in first, update owner information by id
     
@@ -108,7 +108,7 @@ def update_owner_by_id(owner: Owner, id: int, db: Session = Depends(get_db), cur
 
     
 @owner_router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_owner_by_id(id: int, db: Session = Depends(get_db)):
+def delete_owner_by_id(id: int, db: Session = Depends(get_db), current_user: schemas.TokenData =  Depends(oauth2.get_current_user)):
     """
     delete owner by id
     

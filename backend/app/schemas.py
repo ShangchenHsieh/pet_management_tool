@@ -21,6 +21,11 @@ class OwnerOut(BaseModel):
     class Config: 
         from_attributes = True 
     
+class UpdateOwner(BaseModel):
+    first_name: str
+    last_name: Optional[str] = None
+    phone: Optional[str] = None
+    
 ########### 
 ### Pet ###
 ###########

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 // Import images for different species
 import cat from "../../assets/cat.jpg";
@@ -68,18 +68,30 @@ const PetCard = () => {
 
     return (
         <div>
-            <h2>Pet Information</h2>
-            <div>
-                <img src={getDefaultImage(selectedPet.species)} alt={selectedPet.species} style={{ width: '200px', height: '200px' }} />
-                <h3>{renderField(selectedPet.name)}</h3>
-                <p>Species: {renderField(selectedPet.species)}</p>
-                <p>Breed: {renderField(selectedPet.breed)}</p>
-                <p>Age: {renderField(selectedPet.age)}</p>
-                <p>Date of Birth: {selectedPet.dob ? new Date(selectedPet.dob).toLocaleDateString() : "N/A"}</p>
-                <button onClick={handleUpdatePet}>Update</button>
-                <button onClick={() => handleDeletePet(selectedPet.id)}>Delete</button>
+            <div className="update-user-container">
+                <div className="sidebar">
+                    <ul>
+                        <li><Link to="/userdashboard">Dashboard</Link></li>
+                        <li><Link to="/addpet">Add Pet</Link></li>
+                        <li><Link to="/profile">Profile</Link></li>
+                        <li><Link to="/settings">Settings</Link></li>
+                    </ul>
+                </div>
+                <div className="main-content">
+                    <h2>Pet Information</h2>
+                    <div>
+                        <img src={getDefaultImage(selectedPet.species)} alt={selectedPet.species} style={{ width: '200px', height: '200px' }} />
+                        <h3>{renderField(selectedPet.name)}</h3>
+                        <p>Species: {renderField(selectedPet.species)}</p>
+                        <p>Breed: {renderField(selectedPet.breed)}</p>
+                        <p>Age: {renderField(selectedPet.age)}</p>
+                        <p>Date of Birth: {selectedPet.dob ? new Date(selectedPet.dob).toLocaleDateString() : "N/A"}</p>
+                        <button onClick={handleUpdatePet}>Update</button>
+                        <button onClick={() => handleDeletePet(selectedPet.id)}>Delete</button>
+                    </div>
+                    <button onClick={handleCancel}>Return</button>
+                </div>
             </div>
-            <button onClick={handleCancel}>Return</button>
         </div>
     );
 };

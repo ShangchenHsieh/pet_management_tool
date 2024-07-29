@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
-import { useNavigate, useLocation } from "react-router-dom";
-
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import '../../componentStylins/userDashboard.css';
 const UpdatePet = () => {
     const navigate = useNavigate();
     const [token] = useContext(UserContext);
@@ -91,78 +91,100 @@ const UpdatePet = () => {
     };
 
     return (
-        <div className="update-pet-container">
-            <h2>Update Pet Information</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="name" className="form-label">
-                        Name<span className="required-asterisk">*</span>
-                    </label>
-                    <input
-                        type="text"
-                        className={`form-control form-control-lg ${errors ? 'is-invalid' : ''}`}
-                        placeholder=""
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                    />
-                    {errors && <div className="invalid-feedback">{errors}</div>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="breed" className="form-label">
-                        Breed
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control form-control-lg"
-                        placeholder="optional"
-                        name="breed"
-                        value={formData.breed}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="species" className="form-label">
-                        Species
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control form-control-lg"
-                        placeholder="optional"
-                        name="species"
-                        value={formData.species}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="dob" className="form-label">
-                        Birthday
-                    </label>
-                    <input
-                        type="date"
-                        className="form-control form-control-lg"
-                        name="dob"
-                        value={formData.dob}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="age" className="form-label">
-                        Age
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control form-control-lg"
-                        placeholder="optional"
-                        name="age"
-                        value={formData.age}
-                        onChange={handleChange}
-                    />
-                </div>
-                <input type="submit" className="signup-btn" value="Update" />
-            </form>
-            <button className="signup-btn" onClick={handleCancel}>Cancel</button>
+        <div className="update-user-container">
+            <div className="sidebar">
+                <ul>
+                    <li><Link to="/userdashboard">Dashboard</Link></li>
+                    <li><Link to="/addpet">Add Pet</Link></li>
+                    <li><Link to="/profile">Profile</Link></li>
+                    <li><Link to="/settings">Settings</Link></li>
+                </ul>
+            </div>
+            <div className="main-content">
+                <h2>Update Pet Information</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="name" className="form-label">
+                            Name<span className="required-asterisk">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            className={`form-control form-control-lg ${errors ? 'is-invalid' : ''}`}
+                            placeholder=""
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                        />
+                        {errors && <div className="invalid-feedback">{errors}</div>}
+                    </div>
+        
+                    <div className="form-group">
+                        <label htmlFor="species" className="form-label">
+                            Species
+                        </label>
+                        <select
+                            className="form-control form-control-lg"
+                            name="species"
+                            value={formData.species}
+                            onChange={(e) => setFormData({ ...formData, species: e.target.value })}
+                        >
+                            <option value="">Select Species</option>
+                            <option value="cat">Cat</option>
+                            <option value="dog">Dog</option>
+                            <option value="rabbit">Rabbit</option>
+                            <option value="python">Python</option>
+                            <option value="pigeon">Pigeon</option>
+                            <option value="mouse">Mouse</option>
+                        </select>
+                    </div>
+        
+                    <div className="form-group">
+                        <label htmlFor="breed" className="form-label">
+                            Breed
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control form-control-lg"
+                            placeholder="optional"
+                            name="breed"
+                            value={formData.breed}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="dob" className="form-label">
+                            Birthday
+                        </label>
+                        <input
+                            type="date"
+                            className="form-control form-control-lg"
+                            name="dob"
+                            value={formData.dob}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="age" className="form-label">
+                            Age
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control form-control-lg"
+                            placeholder="optional"
+                            name="age"
+                            value={formData.age}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <input type="submit" className="signup-btn" value="Update" />
+                </form>
+                <button className="signup-btn" onClick={handleCancel}>Cancel</button>
+                    
+            </div>
         </div>
+
+       
     );
 };
 

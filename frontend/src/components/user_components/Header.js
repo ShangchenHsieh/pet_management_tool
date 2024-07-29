@@ -16,6 +16,7 @@ const Header = () => {
   const navigate = useNavigate();
   const decodedToken = jwtDecode(token);
 
+  
 
   return (
       <div className="navbar">
@@ -31,7 +32,7 @@ const Header = () => {
           </div>
             
           <div className="navbar-right">            
-            {token && (<button className='logout-btn' >Hi! {decodedToken.first_name}</button>)}
+            
             {token && (<button className='logout-btn' onClick={handleLogout}>Logout</button>)}
           </div>
       </div>

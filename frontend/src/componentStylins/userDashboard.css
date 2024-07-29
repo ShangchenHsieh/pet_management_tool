@@ -15,7 +15,7 @@
 
 .sidebar ul {
     list-style-type: none;
-    padding: 0;
+    padding: 0;  
 }
 
 .sidebar ul li {
@@ -27,7 +27,7 @@
 .sidebar ul li a {
     color: #333;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: bold;  
 }
 
 .sidebar ul li:hover {
@@ -35,6 +35,7 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
 }
+
 
 .main-content {
     margin-left: 270px; /* Adjust based on sidebar width */
@@ -193,4 +194,59 @@
     .main-content {
       margin-left: 0;
     }
-  }
+  } 
+
+  .main-content-2 {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    height: 100vh;           /* Make the main-content take full height of the viewport */
+    margin-left: 270px;      /* Adjust based on sidebar width */
+    padding: 20px;
+    width: calc(100% - 270px);
+}
+
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+   
+    max-width: 500px;
+    width: 100%;
+}
+
+.danger-zone {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.danger-zone h3 {
+    color: #ff4d4d;
+    margin-bottom: 10px;
+}
+
+.danger-zone p {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.danger-zone button {
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+}
+
+.danger-zone button:hover {
+    background-color: #e60000;
+}

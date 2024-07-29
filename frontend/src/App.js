@@ -14,6 +14,8 @@ import AddPet from "./components/user_components/AddPet";
 import UpdatePet from "./components/user_components/UpdatePet";
 import PetCard from "./components/user_components/PetCard";
 import { jwtDecode } from "jwt-decode";
+import UserProfile from "./components/user_components/UserProfile";
+import Settings from "./components/user_components/Settings";
 function App() {
   const [token, setToken] = useContext(UserContext);
   const navigate = useNavigate();
@@ -52,6 +54,8 @@ function App() {
             <Route path="addpet" element={<AddPet />} />
             <Route path="updatepet" element={<UpdatePet />} />
             <Route path="petcard" element={<PetCard />} />
+            <Route path="profile" element={<UserProfile />} />
+            <Route path="settings" element={<Settings />} />
           </Routes>
           
         </div>

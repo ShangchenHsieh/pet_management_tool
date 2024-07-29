@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../../componentStylins/QA.css';
 
 const AddPet = () => {
@@ -64,6 +64,18 @@ const AddPet = () => {
 
     return (
         <>
+          <div className="update-user-container">
+                <div className="sidebar">
+                    <ul>
+                        <li><Link to="/userdashboard">Dashboard</Link></li>
+                        <li><Link to="/addpet">Add Pet</Link></li>
+                        <li><Link to="/profile">Profile</Link></li>
+                        <li><Link to="/settings">Settings</Link></li>
+                    </ul>
+                </div>
+                <div className="main-content">
+                  
+              
             <div className="About-container">
             <div className="login">
               <div className="container">
@@ -143,6 +155,8 @@ const AddPet = () => {
                 </div>
               </div>
             </div>
+      </div>
+      </div>
       </div>
         </>
     
