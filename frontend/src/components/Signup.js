@@ -3,7 +3,9 @@ import Navbar from './Navbar';
 import '../componentStylins/Signup.css';
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
-
+import animationData from "../assets/animation/Animation - 1722228280988.json";
+import Lottie from 'react-lottie';
+ 
 const Signup = () => {
   const [formData, setFormData] = useState({
     first_name: '',
@@ -77,6 +79,15 @@ const Signup = () => {
     
   };
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -85,6 +96,9 @@ const Signup = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-8 m-auto">
+              <div className="animation-container">
+                  <Lottie options={defaultOptions} height={200} width={200 } speed={1} />
+                </div>
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="first_name" className="form-label">

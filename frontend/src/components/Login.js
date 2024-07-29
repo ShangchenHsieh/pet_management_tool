@@ -1,12 +1,15 @@
-import React, { useState, useContext }  from 'react';
+import React, { useState, useContext } from 'react';
 import Navbar from './Navbar';
 import '../componentStylins/QA.css';
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import Lottie from 'react-lottie';
+import animationData from "../assets/animation/Animation - 1722227949984.json";
+
 const Login = () => {
   const [formData, setFormData] = useState({
-    username: null,
-    password: null,
+    username: '',
+    password: '',
   });
 
   const [, setToken] = useContext(UserContext);
@@ -29,23 +32,27 @@ const Login = () => {
     };
     const response = await fetch('http://127.0.0.1:8000/login', requestOptions);
     const data = await response.json();
-    if (response.status === 403 || formData.username == null || formData.password == null) {
+    if (response.status === 403 || formData.username === '' || formData.password === '') {
       setErrors(data.detail); 
-    } 
-
-    else {
+    } else {
       setToken(data.access_token);
       localStorage.setItem('access_token', data.access_token);
-      navigate('/userdashboard')
+      navigate('/userdashboard');
     }
-
-    
-    
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     submitLogin();
+  };
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
   };
 
   return (
@@ -56,6 +63,9 @@ const Login = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-8 m-auto">
+                <div className="animation-container">
+                  <Lottie options={defaultOptions} height={200} width={200 } speed={0.7} />
+                </div>
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="username" className="form-label">
@@ -85,7 +95,6 @@ const Login = () => {
                     />
                     {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                   </div>
-                  
                   <input type="submit" className="signup-btn" value="Sign In " />
                 </form>
               </div>

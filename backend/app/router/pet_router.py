@@ -111,13 +111,13 @@ def create_dummy_pets(db: Session = Depends(get_db)):
     pets = [
         models.Pet(owner_id=2, breed="Siamese", species="Cat", name="Mittens", dob=datetime(2019, 4, 20), age=5),
         models.Pet(owner_id=2, breed="Beagle", species="Dog", name="Rocky", dob=datetime(2021, 2, 18), age=3),
-        models.Pet(owner_id=2, breed="Parakeet", species="Bird", name="Tweety", dob=datetime(2022, 7, 14), age=2),
+        models.Pet(owner_id=2, breed="Parakeet", species="Pigeon", name="Tweety", dob=datetime(2022, 7, 14), age=2),
 
         models.Pet(owner_id=3, breed="Bulldog", species="Dog", name="Buddy", dob=datetime(2018, 8, 15), age=5),
         models.Pet(owner_id=3, breed="Maine Coon", species="Cat", name="Whiskers", dob=datetime(2020, 3, 11), age=4),
-        models.Pet(owner_id=3, breed="Cockatiel", species="Bird", name="Sunny", dob=datetime(2021, 9, 23), age=2),
+        models.Pet(owner_id=3, breed="Cockatiel", species="Pigeon", name="Sunny", dob=datetime(2021, 9, 23), age=2),
 
-        models.Pet(owner_id=4, breed="Parrot", species="Bird", name="Charlie", dob=datetime(2022, 1, 10), age=2),
+        models.Pet(owner_id=4, breed="Parrot", species="Pigeon", name="Charlie", dob=datetime(2022, 1, 10), age=2),
         models.Pet(owner_id=4, breed="Labrador", species="Dog", name="Bella", dob=datetime(2016, 5, 29), age=8),
         models.Pet(owner_id=4, breed="Sphynx", species="Cat", name="Cleopatra", dob=datetime(2019, 6, 30), age=5),
 

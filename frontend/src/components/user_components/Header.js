@@ -4,6 +4,7 @@ import { UserContext } from '../../context/UserContext';
 import icon from '../../assets/cat_paw_icon.png';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
+import default_user_pic from "../../assets/default_pic/default-user.jpg"
 
 const Header = () => {
   const [token, setToken] = useContext(UserContext);
@@ -32,8 +33,12 @@ const Header = () => {
           </div>
             
           <div className="navbar-right">            
-            
-            {token && (<button className='logout-btn' onClick={handleLogout}>Logout</button>)}
+            {token && (
+              <div className="user-profile">
+                <img src={default_user_pic} alt="User Profile" className="user-profile-pic" />
+                <button className='logout-btn' onClick={handleLogout}>Logout</button>
+              </div>
+            )}
           </div>
       </div>
   );
