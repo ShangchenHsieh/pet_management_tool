@@ -26,8 +26,8 @@ const UpdatePet = () => {
         name: selectedPet?.name || '',
         breed: selectedPet?.breed || '',
         species: selectedPet?.species || '',
-        dob: selectedPet?.dob ? formatDate(selectedPet.dob) : '',
-        age: selectedPet?.age || '',
+        dob: selectedPet?.dob ? formatDate(selectedPet.dob) : null,
+        age: selectedPet?.age || null,
     });
 
     useEffect(() => {

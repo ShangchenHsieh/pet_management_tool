@@ -3,6 +3,8 @@ import { UserContext } from "../../context/UserContext";
 import { useNavigate, Link } from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
 import '../../componentStylins/userDashboard.css';
+import default_user_pic from '../../assets/default_pic/default-user-2.jpg';
+
 const UpdateUser = () => {
     const navigate = useNavigate();
     const [token] = useContext(UserContext);
@@ -44,10 +46,7 @@ const UpdateUser = () => {
         };
         
         fetchUser();
-    }, [token, decodedToken.user_id, changePW
-
-        
-    ]);
+    }, [token, decodedToken.user_id, changePW]);
 
     const handleChange = (e) => {
         setFormData({
@@ -58,10 +57,9 @@ const UpdateUser = () => {
     };
 
     const updateUser = async () => {
-        if(formData.first_name.length === 0) {
-            setErrors('Please enter your first name.')
-        }
-        else{
+        if (formData.first_name.length === 0) {
+            setErrors('Please enter your first name.');
+        } else {
             const requestOptions = {
                 method: 'PUT',
                 headers: { 
@@ -79,7 +77,6 @@ const UpdateUser = () => {
                 setErrors(data.detail || 'Failed to update user');
             }
         }
-        
     };
 
     const handleSubmit = (e) => {
@@ -89,13 +86,13 @@ const UpdateUser = () => {
 
     const handleCancel = () => {
         navigate('/userdashboard');
-    }
+    };
 
     const handleChangePassword = () => {
         setChangePW(true);
-    }
+    };
 
-    if(changePW) {
+    if (changePW) {
         return (
             <div>
                 <p>
@@ -103,11 +100,9 @@ const UpdateUser = () => {
                 </p>
                 <button className="signup-btn" onClick={handleCancel}>Cancel</button>
             </div>
-        )
-    }
-    else {
+        );
+    } else {
         return (
-            
             <div className="update-user-container">
                 <div className="sidebar">
                     <ul>
@@ -118,9 +113,21 @@ const UpdateUser = () => {
                     </ul>
                 </div>
                 <div className="main-content-2">
-                    
                     <div className="form-container">
-                    <h2>Update User Information</h2>
+                        <div className="profile-pic-container">
+                            <img src={default_user_pic} alt="User" className="profile-pic" />
+                            <div className="overlay">
+                                <div className="text">Edit</div>
+                            </div>
+                        </div>
+                        <h2>Update User Information</h2>
+                        <div className="form-group">
+                                <label htmlFor="username" className="form-label">
+                                    Username: 
+                                </label>
+                                <p>{formData.username}</p>
+                        </div>
+                        <div className="form">
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="first_name" className="form-label">
@@ -162,30 +169,19 @@ const UpdateUser = () => {
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="username" className="form-label">
-                                    Username
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control form-control-lg"
-                                    placeholder=""
-                                    name="username"
-                                    value={formData.username}
-                                    onChange={handleChange}
-                                    readOnly
-                                />
-                            </div>
+                            
                             <input type="submit" className="signup-btn" value="Update" />
                         </form>
                         <button className="signup-btn" onClick={handleChangePassword}>Change Password</button>
                         <button className="signup-btn" onClick={handleCancel}>Cancel</button>
-                    </div>                  
+
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
-                
         );
-    }    
+    }
 };
 
 export default UpdateUser;
