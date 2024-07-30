@@ -203,7 +203,10 @@
     margin-left: 270px;      /* Adjust based on sidebar width */
     padding: 20px;
     width: calc(100% - 270px);
+    
 }
+
+
 
 .form-container {
     background: white;
@@ -249,4 +252,45 @@
 
 .danger-zone button:hover {
     background-color: #e60000;
+}
+
+.profile-pic-container {
+    position: relative;
+    width: 200px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.profile-pic {
+    width: 100%;
+    border-radius: 100%;
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+}
+
+.profile-pic-container:hover .overlay {
+    opacity: 1;
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
