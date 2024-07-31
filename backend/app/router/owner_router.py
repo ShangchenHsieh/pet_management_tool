@@ -82,6 +82,35 @@ def create_owner(owner: Owner, db: Session = Depends(get_db)):
     return {"access_token": access_token, "token_type": "bearer"}
 
 
+@owner_router.put("/pwupdate")
+def update_pw(update_password: schemas.UpdatePassword, db: Session = Depends(get_db), current_user: schemas.TokenData = Depends(oauth2.get_current_user)):
+    """Updates the password for the current user.
+
+    Args:
+        update_password (schemas.UpdatePassword): Contains old password and new password strings.
+        db (Session, optional): Database session. Defaults to Depends(get_db).
+        current_user (schemas.TokenData, optional): Current logged-in user. Defaults to Depends(oauth2.get_current_user).
+
+    Returns:
+        dict: Success message.
+    """
+    user = db.query(models.Owner).filter(models.Owner.id == current_user.id).first()
+    
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    
+    print(f"Stored password hash: {user.password}")
+    print(f"Provided old password: {update_password.password}")
+    
+    if not utils.pwd_context.verify(update_password.password, user.password):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid credentials")
+    
+    user.password = utils.pwd_context.hash(update_password.new_password)
+    print(user.password)
+    db.commit()
+    
+    return {"message": "Password updated successfully"}
+
 @owner_router.put("/{id}")
 def update_owner_by_id(owner: schemas.UpdateOwner, id: int, db: Session = Depends(get_db), current_user: schemas.TokenData =  Depends(oauth2.get_current_user)):
     """
