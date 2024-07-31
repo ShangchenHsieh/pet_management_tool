@@ -73,6 +73,9 @@ class PetRecord(BaseModel):
 
 
 
-###############
-### Pet Fed ###
-###############
+##########
+### PW ###
+##########
+class UpdatePassword(BaseModel):
+    password: str
+    new_password: str
