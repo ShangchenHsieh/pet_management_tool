@@ -100,7 +100,9 @@ const UpdatePet = () => {
                     <li><Link to="/settings">Settings</Link></li>
                 </ul>
             </div>
-            <div className="main-content">
+
+            <div className="main-container">
+            <div className="main-content2">
                 <h2>Update Pet Information</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -181,6 +183,7 @@ const UpdatePet = () => {
                 </form>
                 <button className="signup-btn" onClick={handleCancel}>Cancel</button>
                     
+            </div>
             </div>
         </div>
 

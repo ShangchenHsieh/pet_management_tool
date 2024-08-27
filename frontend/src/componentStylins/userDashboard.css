@@ -2,6 +2,30 @@
     display: flex;
 }
 
+.main-content2 {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+
+
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-content2 h2 {
+    font-size: 32px;
+    color: #34495e;
+    margin-bottom: 30px;
+}
+.main-container {
+    margin-top: 50px;
+}
 .sidebar {
     background-color: #f7f7f7;
     border-right: 1px solid #ddd;
@@ -11,6 +35,13 @@
     position: fixed;
     transition: 0.8s;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    top: 60px;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    padding: 0; /* Ensures no extra space inside */
+    margin: 0; 
 }
 
 .sidebar ul {
@@ -47,9 +78,11 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 20px;
 }
+
+
 
 .card {
     background-color: #fff;
@@ -91,6 +124,7 @@
     display: flex;
 }
 
+
 .error {
     color: red;
     text-align: center;
@@ -104,7 +138,7 @@
 
 .update-button,
 .delete-button {
-    background-color: #d8e4e7; /* Green */
+    background-color: #eaac60; /* Green */
     border: none;
     color: white;
     cursor: pointer;
@@ -116,7 +150,7 @@
 }
 
 .update-button {
-    background-color: #d9f3da; /* Green */
+    background-color: #eaac60; /* Green */
     color: black;
     margin-right: 1px;
 }
@@ -128,7 +162,7 @@
 }
 
 .update-button:hover {
-    background-color: #45a049;
+    background-color: #e0844c;
 }
 
 .delete-button:hover {

@@ -32,8 +32,9 @@ const Login = () => {
     };
     const response = await fetch('http://127.0.0.1:8000/login', requestOptions);
     const data = await response.json();
-    if (response.status === 403 || formData.username === '' || formData.password === '') {
+    if (response.status === 403 || formData.username === '' || formData.password === '' || !response.ok) {
       setErrors(data.detail); 
+      navigate('/login');
     } else {
       setToken(data.access_token);
       localStorage.setItem('access_token', data.access_token);

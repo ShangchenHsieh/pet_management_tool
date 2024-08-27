@@ -6,14 +6,16 @@ html, body, #root, .Home {
 }
 
 .Home {
+    background-image: url('../assets/cats.jpg');
+    opacity: 0.6;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Adjust to start content from the top */
-    height: auto; /* Allow content to expand */
-    min-height: 100%; /* Ensure minimum height is 100% */
+    justify-content: flex-start; /* Start content from the top */
+    min-height: 100vh; /* Ensure the Home container covers the full viewport height */
     z-index: 1; /* Ensure it is behind the Navbar */
+    overflow: auto; /* Hide any overflowing content */
 }
 
 .Home-logo {
@@ -30,27 +32,31 @@ html, body, #root, .Home {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100%; /* Match the overlay's height to its container */
     background-color: rgba(255, 255, 255, 0.5); /* Adjusted opacity for visibility */
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Adjust to start content from the top */
+    align-items: flex-start; /* Start content from the top */
     padding: 20px; /* Adds space around the white content box */
     box-sizing: border-box;
-    overflow: auto; /* Allow the overlay to scroll if content overflows */
+    overflow-y: auto; /* Allow vertical scrolling if content overflows */
+    z-index: -1;
 }
 
 .content {
-    padding: 100px;
-    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 8px 100px; /* Adjust padding as needed */
+    background-color: white;
+    
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%; /* Full width minus padding */
     max-width: 1500px; /* Optional max-width */
     box-sizing: border-box; /* Include padding in width and height */
-    overflow: auto; /* Allow the content to scroll if it overflows */
+    overflow: hidden; /* Hide any overflowing content */
 }
+
 
 .content h1 ,h2 {
     margin-bottom: 20px;
@@ -89,6 +95,7 @@ html, body, #root, .Home {
     align-items: center;
     justify-content: center;
     margin-right: 10%;
+    padding: 0;
 }
 
 .content-cards {

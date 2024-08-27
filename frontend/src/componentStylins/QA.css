@@ -44,3 +44,36 @@ body, html {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.update-button,
+.delete-button {
+    background-color: #d8e4e7; /* Green */
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.update-button {
+    background-color: #d9f3da; /* Green */
+    color: black;
+    margin-right: 1px;
+}
+
+.delete-button {
+    background-color: #f0b98386; /* Red */
+    color: black;
+    margin-left: 1px;
+}
+
+.update-button:hover {
+    background-color: #45a049;
+}
+
+.delete-button:hover {
+    background-color: #d3c22f;
+}

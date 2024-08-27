@@ -7,10 +7,12 @@ import {
   ShoppingCartOutlined,
   ShoppingOutlined,
   UserOutlined,
+  ProfileOutlined,
+  AreaChartOutlined
 } from "@ant-design/icons";
 import { Card, Space, Statistic, Typography } from "antd";
 
-import AddPet from "./AddPet";
+
 import cat from "../../assets/cat.jpg";
 import dog from "../../assets/dog.jpg";
 import rabbit from "../../assets/rabbit.jpg";
@@ -150,30 +152,30 @@ const UserDashboard = () => {
                                     }}
                                 />
                             }
-                            title={"Number of Pets"}
+                            title={"Pets"}
                             value={data.length} // Assuming 'data' represents employees
                         />
                         <DashboardCard
                             icon={
-                                <UserOutlined
+                                <ProfileOutlined
                                     style={{
-                                        color: "purple",
-                                        backgroundColor: "rgba(0,255,255,0.25)",
+                                        color: "rgba(45,65,53,0.7)",
+                                        backgroundColor: "rgba(45,65,53,0.25)",
                                         borderRadius: 20,
                                         fontSize: 24,
                                         padding: 8,
                                     }}
                                 />
                             }
-                            title={"Customers"}
+                            title={"Total Records"}
                             value={1} // Assuming 'customers' is a state or prop
                         />
                         <DashboardCard
                             icon={
-                                <ShoppingOutlined
+                                <AreaChartOutlined 
                                     style={{
-                                        color: "blue",
-                                        backgroundColor: "rgba(0,0,255,0.25)",
+                                        color: "rgba(45,65,53,0.7)",
+                                        backgroundColor: "rgba(45,65,53,0.25)",
                                         borderRadius: 20,
                                         fontSize: 24,
                                         padding: 8,

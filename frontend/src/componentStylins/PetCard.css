@@ -1,0 +1,128 @@
+/* PetCard Styling */
+
+.main-content1 {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.main-content1 h2 {
+    font-size: 32px;
+    color: #34495e;
+    margin-bottom: 30px;
+}
+
+.main-content1 img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-content1 h3 {
+    font-size: 26px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.main-content1 p {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin: 8px 0;
+}
+
+.main-content1 button {
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin: 15px 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.main-content1 .update-btn {
+    background-color: #f39862;
+}
+
+.main-content1 .update-btn:hover {
+    background-color: #e0844c;
+}
+
+.main-content1 .delete-btn {
+    background-color: #d88a84;
+}
+
+.main-content1 .delete-btn:hover {
+    background-color: #c7746e;
+}
+
+.main-content1 .return-btn {
+    background-color: #988a76;
+}
+
+.main-content1 .return-btn:hover {
+    background-color: #877963;
+}
+
+.records-container {
+    margin-top: 20px;
+}
+
+.record-row {
+    display: flex;
+    justify-content: space-between; /* This aligns items evenly across the row */
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd; /* Add a line between records */
+    width: 580px;
+}
+
+.record-item {
+    flex: 1; /* Distribute space evenly */
+    text-align: center; /* Center align text */
+    padding: 0 10px; /* Add some padding for spacing */
+}
+
+.record-item:first-child {
+    text-align: left; /* Align the date to the left */
+}
+
+.record-item:last-child {
+    text-align: right; /* Align the description to the right */
+}
+
+.record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center vertically */
+    margin-bottom: 20px;
+}
+
+.record-header h2 {
+    margin: 0;
+    font-size: 32px;
+}   
+
+.new-record-btn {
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.new-record-btn:hover {
+    background-color: #45a049;
+}
+

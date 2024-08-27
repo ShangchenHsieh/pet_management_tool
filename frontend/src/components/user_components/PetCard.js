@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-
+import "../../componentStylins/PetCard.css"
 // Import images for different species
 import cat from "../../assets/cat.jpg";
 import dog from "../../assets/dog.jpg";
@@ -13,9 +13,9 @@ import mouse from "../../assets/unknown_animal.jpg";
 const PetCard = () => {
     const navigate = useNavigate();
     const [token] = useContext(UserContext);
-    const [errors, setErrors] = useState('');
     const location = useLocation();
     const { selectedPet } = location.state || {};
+    const [records, setRecords] = useState("");
 
     const handleCancel = () => {
         navigate('/userdashboard');
@@ -45,6 +45,33 @@ const PetCard = () => {
         }
     };
 
+    const handleAddRecord = async (pet_id) => {
+        }
+    
+    const fetchRecords = async (pet_id) => {
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        const response = await fetch(`http://127.0.0.1:8000/pet_records/all/${pet_id}`, requestOptions);
+        if(!response.ok) {
+            console.log("failed to fetch records");
+        }
+        else {
+            const data = await response.json();  // Await the response to be converted to JSON
+            setRecords(data);
+           
+        }
+
+    }
+
+    useEffect(() => {
+       
+        fetchRecords(selectedPet.id);
+    }, []);
+
     const renderField = (field) => (field !== null && field !== undefined ? field : "N/A");
 
     const getDefaultImage = (species) => {
@@ -66,6 +93,8 @@ const PetCard = () => {
         }
     };
 
+
+
     return (
         <div>
             <div className="update-user-container">
@@ -77,20 +106,47 @@ const PetCard = () => {
                         <li><Link to="/settings">Settings</Link></li>
                     </ul>
                 </div>
-                <div className="main-content">
-                    <h2>Pet Information</h2>
+                <div className="main-content1">
+                    <h2>{renderField(selectedPet.name)}</h2>
                     <div>
                         <img src={getDefaultImage(selectedPet.species)} alt={selectedPet.species} style={{ width: '200px', height: '200px' }} />
-                        <h3>{renderField(selectedPet.name)}</h3>
+                        
                         <p>Species: {renderField(selectedPet.species)}</p>
                         <p>Breed: {renderField(selectedPet.breed)}</p>
                         <p>Age: {renderField(selectedPet.age)}</p>
                         <p>Date of Birth: {selectedPet.dob ? new Date(selectedPet.dob).toLocaleDateString() : "N/A"}</p>
-                        <button onClick={handleUpdatePet}>Update</button>
-                        <button onClick={() => handleDeletePet(selectedPet.id)}>Delete</button>
+                        <button className="update-btn" onClick={handleUpdatePet}>Update</button>
+                        <button className="return-btn" onClick={handleCancel}>Return</button>
                     </div>
-                    <button onClick={handleCancel}>Return</button>
+                    <button className="delete-btn" onClick={() => handleDeletePet(selectedPet.id)}>Delete</button>
+                    
                 </div>
+                <div className="main-content1">
+                    
+                <div className="record-header">
+                    <h2>Records of {renderField(selectedPet.name)}</h2>
+                    <button className="new-record-btn">
+                        New Record +
+                    </button>
+                </div>
+
+                    <div className="records-container">
+                        {records && records.length > 0 ? (
+                            records.map((record, index) => (
+                                <button key={index} className="record-row" onClick={handleAddRecord}>
+                                    
+                                    <p className="record-item">{record.date.split("T")[0]}</p>
+                                    <p className="record-item">{record.height}</p>
+                                    <p className="record-item">{record.weight}</p>
+                                    <p className="record-item">{record.description}</p>
+                                </button>
+                            ))
+                        ) : (
+                            <h>No records found.</h>
+                        )}
+                    </div>
+                </div>
+
             </div>
         </div>
     );

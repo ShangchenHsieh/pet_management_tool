@@ -157,9 +157,9 @@ const AddPet = () => {
                       </div>
                       
             
-                        <input type="submit" className="signup-btn" value="Create" />
+                        <input type="submit" className="update-button" value="Create" />
                     </form>
-                    <button className="signup-btn" onClick={handleCancel}>Cancel</button>
+                    <button className="delete-button" onClick={handleCancel}>Cancel</button>
                   </div>
                 </div>
               </div>

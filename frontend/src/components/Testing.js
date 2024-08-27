@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../assets/cats.jpg';
-import '../componentStylins/Home.css'
+
 import Navbar from './Navbar';
 import Chatbot from './Chatbot';
 import CustomCarousel from './CustomCarousel';
@@ -13,7 +13,7 @@ import log from '../assets/icons/log.png';
 import diet from '../assets/icons/diet.png';
 import python from '../assets/default_pic/python.jpg'
 
-function Home() {
+const Testing = () => {
   const images = [
     { imgURL: small_dog, imgAlt: 'small dog' },
     { imgURL: parrot, imgAlt: 'parrot' },
@@ -26,7 +26,8 @@ function Home() {
     <>
       <Navbar />
       <div className="Home">
-        <div className="">
+        <img src={logo} className="Home-logo" alt="logo" />
+        <div className="overlay">
           <div className="content">
             <h2>PAWfect+</h2>
             <div className="content-body">
@@ -90,4 +91,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Testing;
