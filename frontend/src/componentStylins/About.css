@@ -1,16 +1,15 @@
-
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
 }
-  
-.About-container {
+
+.about-container {
   display: flex;
   justify-content: center;
   align-items: flex-start; 
-  height: 100vh;
+  min-height: 100vh;
   text-align: center;
   background-image: url('../assets/cats.jpg');
   background-size: cover;
@@ -18,17 +17,75 @@ body, html {
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: white;
-  opacity: .6;
 }
 
-.About-content {
-  background: rgba(0, 0, 0, 0.8); 
-  padding: 20px;
+.about-content {
+  background: rgba(0, 0, 0, 0.7); 
+  padding: 40px 20px;
   border-radius: 10px;
-  width: 80%;
-  max-width: 1600px; /* Adjust this value as needed */
-  margin: 200 auto;
+  width: 95%;
+  max-width: 1200px; /* Adjust as needed */
   margin-top: 40px;
   box-sizing: border-box;
+  opacity: 1;
 }
-  
+
+.team-intro {
+  margin-bottom: 40px;
+  font-size: 1.4em;
+  line-height: 1.5;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.team-member.reverse {
+  flex-direction: row-reverse;
+}
+
+.team-img {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.team-img.left-img {
+  margin: 20px;
+  width: 300px;
+  height: 400px;
+}
+
+.team-img.left-img2 {
+  margin: 20px;
+  width: 300px;
+  height: 300px;
+}
+.team-img.right-img {
+  margin: 20px;
+  width: 276px;
+  height: 360px;
+}
+
+.team-description {
+  max-width: auto;
+}
+
+.team-description p {
+  font-size: 1.3em;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.spacer {
+  padding: 20px;
+}
+
+.spacer {
+  padding: 20px;
+}

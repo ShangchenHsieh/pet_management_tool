@@ -28,7 +28,7 @@ function Home() {
       <div className="Home">
         <div className="">
           <div className="content">
-            <h2>PAWfect+</h2>
+            <h1>PAWfect+</h1>
             <div className="content-body">
               <div className="content-left">
                 <h3>A perfect application designed to keep track of your <span>pets!</span></h3>
@@ -50,9 +50,7 @@ function Home() {
 
                 <p>
                   Monitor your pet's health with regular check-ups and keep track of medical history.
-                  Ensure that vaccinations are up-to-date and track any illnesses or injuries. 
-                  Use our tool to set reminders for vet appointments and medications. 
-                  You can also log symptoms and monitor recovery progress over time.
+                  
                 </p>              </div>
               <div className="card mid-info">
               <div className="icon-container">
@@ -61,9 +59,8 @@ function Home() {
                 <h3>Diet Management</h3>
                 <p>
                   Plan and manage your pet's diet with personalized meal recommendations. 
-                  Track their eating habits and ensure they get the right balance of nutrients. 
-                  Set feeding schedules, and get alerts if a meal is missed. 
-                  Our tool can also suggest dietary changes based on your pet’s health and activity levels.
+                  
+                  
                 </p>              </div>
               <div className="card right-info">
               <div className="icon-container">
@@ -72,10 +69,9 @@ function Home() {
                 <h3>Activity Log</h3>
       
                 <p>
-                  Keep track of your pet's activities and ensure they get enough exercise. 
-                  Log daily walks, playtime, and other physical activities. 
-                  Monitor their activity levels over time to make sure they are staying active and healthy. 
-                  You can also set fitness goals and track progress towards achieving them.
+                  Keep track of your pet's activities and ensure they get enough physical activities. 
+                  
+                  
                 </p>              </div>
                 <Chatbot />
             </div>
@@ -83,6 +79,12 @@ function Home() {
           </div>
           
         </div>
+        <style>
+          
+        </style>
+        <footer>
+          &copy; 2024 PAWfect+. All Rights Reserved.
+        </footer>
        
       </div>
       

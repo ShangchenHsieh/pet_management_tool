@@ -99,8 +99,6 @@ def update_pw(update_password: schemas.UpdatePassword, db: Session = Depends(get
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     
-    print(f"Stored password hash: {user.password}")
-    print(f"Provided old password: {update_password.password}")
     
     if not utils.pwd_context.verify(update_password.password, user.password):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid credentials")

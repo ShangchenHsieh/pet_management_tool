@@ -11,6 +11,9 @@
     flex-direction: row;
     flex-wrap: nowrap;
     background-color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+    background-color: #fff; /* Optional: Ensure background color is set */
+    border-radius: 8px; /* Optional: Add rounded corners */
   }
   
   .container__slider > button {

@@ -12,7 +12,7 @@ import {
 
 const Chatbot = () => {
   const apikey = process.env.REACT_APP_API_KEY
-  console.log(`api key ${apikey}`)
+  
   const [userMessage, setUserMessage] = useState(""); // State to store user's message
   const [chatMessages, setChatMessages] = useState([
     { role: "incoming", content: "Hi there 👋\nHow can I help you today?" },
@@ -41,7 +41,7 @@ const Chatbot = () => {
     const promptMessage = {
       role: "system",
       content:
-        "This is a chat for a pet management application. Please provide information about pets",
+        "This is a chat for a pet management application. Please provide information about pets. Sometimes the user might ask questions about the diet, health condition, mental condition about their pets. Please provide solutions or advices according to their concerns.",
     };
     const apiRequestBody = {
       model: "gpt-3.5-turbo",

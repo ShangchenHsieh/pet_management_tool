@@ -76,17 +76,17 @@ const PetCard = () => {
 
     const getDefaultImage = (species) => {
         switch (species) {
-            case "cat":
+            case 'cat':
                 return cat;
-            case "dog":
+            case 'dog':
                 return dog;
-            case "rabbit":
+            case 'rabbit':
                 return rabbit;
-            case "python":
+            case 'python':
                 return python;
-            case "pigeon":
+            case 'pigeon':
                 return pigeon;
-            case "mouse":
+            case 'mouse':
                 return mouse;
             default:
                 return null;

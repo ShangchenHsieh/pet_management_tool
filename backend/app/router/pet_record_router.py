@@ -24,11 +24,11 @@ def create_dummy_pet_records(db: Session = Depends(get_db)):
     :return: Message indicating success
     """
     pet_records = [
-        models.PetRecord(owner_id=2, pet_id=40, date=datetime(2019, 4, 20), weight=5.0, height=30.0, description="description 1"),
-        models.PetRecord(owner_id=2, pet_id=40, date=datetime(2019, 4, 20), weight=5.2, height=30.5, description="description 2"),
-        models.PetRecord(owner_id=2, pet_id=40, date=datetime(2019, 4, 20), weight=7.0, height=40.0, description="description 3"),
-        models.PetRecord(owner_id=2, pet_id=40, date=datetime(2019, 4, 20), weight=6.5, height=35.0, description="description 4"),
-        models.PetRecord(owner_id=2, pet_id=40, date=datetime(2019, 4, 20), weight=6.5, height=35.0, description="description 5"),
+        models.PetRecord(owner_id=2, pet_id=26, date=datetime(2019, 4, 20), weight=5.0, height=30.0, description="description 1"),
+        models.PetRecord(owner_id=2, pet_id=26, date=datetime(2019, 4, 20), weight=5.2, height=30.5, description="description 2"),
+        models.PetRecord(owner_id=2, pet_id=26, date=datetime(2019, 4, 20), weight=7.0, height=40.0, description="description 3"),
+        models.PetRecord(owner_id=2, pet_id=26, date=datetime(2019, 4, 20), weight=6.5, height=35.0, description="description 4"),
+        models.PetRecord(owner_id=2, pet_id=26, date=datetime(2019, 4, 20), weight=6.5, height=35.0, description="description 5"),
     ]
 
     db.add_all(pet_records)
